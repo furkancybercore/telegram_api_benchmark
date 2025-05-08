@@ -49,9 +49,6 @@ class UplinkSender(BaseSender):
         if not self._api:
             raise RuntimeError("API client not initialized")
         
-        # Capture important debug information
-        print(f"[Debug UplinkSender] Sending to chat_id={self.chat_id}, text={text_payload[:30]}...")
-        
         try:
             # Use a simple form call which matches Telegram's expectations
             response = await self._api.send_message(
@@ -66,21 +63,15 @@ class UplinkSender(BaseSender):
             response_size = len(content_bytes)
             success = 200 <= status_code < 300
             
-            if not success:
-                print(f"[Debug {self.name}] Non-2xx Status: {status_code}, Response: {response_text[:200]}")
-            
             return status_code, response_text, response_size, success
             
         except aiohttp.ClientResponseError as e:
-            print(f"[Debug {self.name}] ClientResponseError: Status={e.status}, Message={e.message}")
             return e.status, str(e), 0, False
             
         except aiohttp.ClientError as e:
-            print(f"[Debug {self.name}] ClientError: {str(e)}")
             return 0, str(e), 0, False
             
         except Exception as e:
-            print(f"[Debug {self.name}] Unexpected error: {type(e).__name__} - {str(e)}")
             return 0, str(e), 0, False
 
     def send_message_sync(self, db_conn, text_payload, message_params):
@@ -110,17 +101,12 @@ class UplinkSender(BaseSender):
             response_size = len(response.content)
             success = 200 <= status_code < 300
             
-            if not success:
-                print(f"[Debug {self.name} sync] Error: {status_code}, Response: {response_text[:200]}")
-                
             return status_code, response_text, response_size, success
             
         except requests.RequestException as e:
-            print(f"[Debug {self.name} sync] RequestException: {str(e)}")
             return 0, str(e), 0, False
             
         except Exception as e:
-            print(f"[Debug {self.name} sync] Unexpected error: {type(e).__name__} - {str(e)}")
             return 0, str(e), 0, False
 
     def get_sender_type(self):

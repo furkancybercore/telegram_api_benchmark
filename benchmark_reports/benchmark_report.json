@@ -1,7 +1,7 @@
 {
   "benchmark_details": {
     "project_name": "Telegram HTTP Library Benchmark",
-    "timestamp": "2025-05-08T17:10:46.074403+00:00",
+    "timestamp": "2025-05-08T18:16:58.972074+00:00",
     "python_version": "3.13.2",
     "platform": "Windows-11-10.0.26100-SP0",
     "libraries_versions": {
@@ -14,12 +14,12 @@
       "pytelegrambotapi": "4.27.0"
     },
     "parameters": {
-      "num_messages_per_library": 2,
+      "num_messages_per_library": 10,
       "telegram_api_url": "https://api.telegram.org/bot[REDACTED]/sendMessage",
       "database_backend": "PostgreSQL",
       "db_host": "localhost"
     },
-    "report_generated_at": "2025-05-08T17:10:46.098802+00:00"
+    "report_generated_at": "2025-05-08T18:16:58.995599+00:00"
   },
   "libraries": {
     "httpx": {
@@ -29,47 +29,127 @@
       "run_details": [
         {
           "status_code": 200,
-          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":26,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper-",
-          "response_size_bytes": 252,
-          "db_read_time_ms": 1.34,
-          "http_request_time_ms": 1048.08,
-          "total_processing_time_ms": 1049.41,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":474,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 253,
+          "db_read_time_ms": 1.47,
+          "http_request_time_ms": 998.65,
+          "total_processing_time_ms": 1000.12,
           "success": true,
           "error_message": null
         },
         {
           "status_code": 200,
-          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":27,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper-",
-          "response_size_bytes": 252,
-          "db_read_time_ms": 0.61,
-          "http_request_time_ms": 522.48,
-          "total_processing_time_ms": 523.09,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":475,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 253,
+          "db_read_time_ms": 0.31,
+          "http_request_time_ms": 483.32,
+          "total_processing_time_ms": 483.63,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":476,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 253,
+          "db_read_time_ms": 0.3,
+          "http_request_time_ms": 440.35,
+          "total_processing_time_ms": 440.66,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":477,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 253,
+          "db_read_time_ms": 0.31,
+          "http_request_time_ms": 445.56,
+          "total_processing_time_ms": 445.87,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":478,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 253,
+          "db_read_time_ms": 0.35,
+          "http_request_time_ms": 446.51,
+          "total_processing_time_ms": 446.86,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":479,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 253,
+          "db_read_time_ms": 0.36,
+          "http_request_time_ms": 472.65,
+          "total_processing_time_ms": 473.0,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":480,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 253,
+          "db_read_time_ms": 0.28,
+          "http_request_time_ms": 440.96,
+          "total_processing_time_ms": 441.24,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":481,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 253,
+          "db_read_time_ms": 0.24,
+          "http_request_time_ms": 437.82,
+          "total_processing_time_ms": 438.07,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":482,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 253,
+          "db_read_time_ms": 0.26,
+          "http_request_time_ms": 441.83,
+          "total_processing_time_ms": 442.09,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":483,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 254,
+          "db_read_time_ms": 0.26,
+          "http_request_time_ms": 435.1,
+          "total_processing_time_ms": 435.36,
           "success": true,
           "error_message": null
         }
       ],
       "workflow": {
-        "avg_db_read_time_s": 0.00098,
-        "p95_db_read_time_s": 0.0013,
-        "p99_db_read_time_s": 0.00133,
-        "std_db_read_time_s": 0.00037,
-        "avg_http_send_time_s": 0.78528,
-        "p95_http_send_time_s": 1.0218,
-        "p99_http_send_time_s": 1.04282,
-        "std_http_send_time_s": 0.2628,
-        "avg_total_processing_time_s": 0.78625,
-        "p95_total_processing_time_s": 1.02309,
-        "p99_total_processing_time_s": 1.04415,
-        "std_total_processing_time_s": 0.26316,
-        "avg_response_size_bytes": 252.0,
-        "throughput_msg_per_sec": 1.12,
-        "total_benchmark_duration_s": 1.7837,
-        "successful_runs": 2,
+        "avg_db_read_time_s": 0.00041,
+        "p95_db_read_time_s": 0.00097,
+        "p99_db_read_time_s": 0.00137,
+        "std_db_read_time_s": 0.00035,
+        "avg_http_send_time_s": 0.50428,
+        "p95_http_send_time_s": 0.76675,
+        "p99_http_send_time_s": 0.95227,
+        "std_http_send_time_s": 0.16548,
+        "avg_total_processing_time_s": 0.50469,
+        "p95_total_processing_time_s": 0.7677,
+        "p99_total_processing_time_s": 0.95364,
+        "std_total_processing_time_s": 0.16583,
+        "avg_response_size_bytes": 253.1,
+        "throughput_msg_per_sec": 1.9,
+        "total_benchmark_duration_s": 5.2633,
+        "successful_runs": 10,
         "failed_runs": 0,
-        "total_runs": 2,
+        "total_runs": 10,
         "success_rate_percent": 100.0,
-        "cpu_time_percent": 10.51,
-        "memory_increase_mb": 2.76
+        "cpu_time_percent": 4.75,
+        "memory_increase_mb": 2.95
       }
     },
     "aiohttp": {
@@ -79,47 +159,127 @@
       "run_details": [
         {
           "status_code": 200,
-          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":28,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper-",
-          "response_size_bytes": 254,
-          "db_read_time_ms": 0.23,
-          "http_request_time_ms": 964.44,
-          "total_processing_time_ms": 964.66,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":484,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 255,
+          "db_read_time_ms": 0.13,
+          "http_request_time_ms": 993.45,
+          "total_processing_time_ms": 993.58,
           "success": true,
           "error_message": null
         },
         {
           "status_code": 200,
-          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":29,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper-",
-          "response_size_bytes": 254,
-          "db_read_time_ms": 0.29,
-          "http_request_time_ms": 437.86,
-          "total_processing_time_ms": 438.14,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":485,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 255,
+          "db_read_time_ms": 0.24,
+          "http_request_time_ms": 453.57,
+          "total_processing_time_ms": 453.81,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":486,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 255,
+          "db_read_time_ms": 0.21,
+          "http_request_time_ms": 474.1,
+          "total_processing_time_ms": 474.31,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":487,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 255,
+          "db_read_time_ms": 0.26,
+          "http_request_time_ms": 451.75,
+          "total_processing_time_ms": 452.01,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":488,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 255,
+          "db_read_time_ms": 0.25,
+          "http_request_time_ms": 467.88,
+          "total_processing_time_ms": 468.12,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":489,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 255,
+          "db_read_time_ms": 0.22,
+          "http_request_time_ms": 468.14,
+          "total_processing_time_ms": 468.36,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":490,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 255,
+          "db_read_time_ms": 0.31,
+          "http_request_time_ms": 443.72,
+          "total_processing_time_ms": 444.03,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":491,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 255,
+          "db_read_time_ms": 0.31,
+          "http_request_time_ms": 445.76,
+          "total_processing_time_ms": 446.08,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":492,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 255,
+          "db_read_time_ms": 0.27,
+          "http_request_time_ms": 450.19,
+          "total_processing_time_ms": 450.46,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":493,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 256,
+          "db_read_time_ms": 0.32,
+          "http_request_time_ms": 503.5,
+          "total_processing_time_ms": 503.81,
           "success": true,
           "error_message": null
         }
       ],
       "workflow": {
-        "avg_db_read_time_s": 0.00026,
-        "p95_db_read_time_s": 0.00029,
-        "p99_db_read_time_s": 0.00029,
-        "std_db_read_time_s": 3e-05,
-        "avg_http_send_time_s": 0.70115,
-        "p95_http_send_time_s": 0.93811,
-        "p99_http_send_time_s": 0.95917,
-        "std_http_send_time_s": 0.26329,
-        "avg_total_processing_time_s": 0.7014,
-        "p95_total_processing_time_s": 0.93833,
-        "p99_total_processing_time_s": 0.95939,
-        "std_total_processing_time_s": 0.26326,
-        "avg_response_size_bytes": 254.0,
-        "throughput_msg_per_sec": 1.43,
-        "total_benchmark_duration_s": 1.4034,
-        "successful_runs": 2,
+        "avg_db_read_time_s": 0.00025,
+        "p95_db_read_time_s": 0.00032,
+        "p99_db_read_time_s": 0.00032,
+        "std_db_read_time_s": 5e-05,
+        "avg_http_send_time_s": 0.51521,
+        "p95_http_send_time_s": 0.77297,
+        "p99_http_send_time_s": 0.94935,
+        "std_http_send_time_s": 0.16031,
+        "avg_total_processing_time_s": 0.51546,
+        "p95_total_processing_time_s": 0.77318,
+        "p99_total_processing_time_s": 0.9495,
+        "std_total_processing_time_s": 0.16027,
+        "avg_response_size_bytes": 255.1,
+        "throughput_msg_per_sec": 1.94,
+        "total_benchmark_duration_s": 5.1551,
+        "successful_runs": 10,
         "failed_runs": 0,
-        "total_runs": 2,
+        "total_runs": 10,
         "success_rate_percent": 100.0,
-        "cpu_time_percent": 0.0,
-        "memory_increase_mb": 1.24
+        "cpu_time_percent": 0.3,
+        "memory_increase_mb": 1.46
       }
     },
     "requests": {
@@ -129,47 +289,127 @@
       "run_details": [
         {
           "status_code": 200,
-          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":30,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper-",
-          "response_size_bytes": 255,
-          "db_read_time_ms": 1.33,
-          "http_request_time_ms": 948.99,
-          "total_processing_time_ms": 950.32,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":494,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 256,
+          "db_read_time_ms": 1.08,
+          "http_request_time_ms": 941.94,
+          "total_processing_time_ms": 943.02,
           "success": true,
           "error_message": null
         },
         {
           "status_code": 200,
-          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":31,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper-",
-          "response_size_bytes": 255,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":495,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 256,
+          "db_read_time_ms": 0.29,
+          "http_request_time_ms": 943.85,
+          "total_processing_time_ms": 944.14,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":496,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 256,
+          "db_read_time_ms": 0.27,
+          "http_request_time_ms": 965.54,
+          "total_processing_time_ms": 965.81,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":497,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 256,
           "db_read_time_ms": 0.26,
-          "http_request_time_ms": 972.07,
-          "total_processing_time_ms": 972.33,
+          "http_request_time_ms": 967.98,
+          "total_processing_time_ms": 968.24,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":498,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 256,
+          "db_read_time_ms": 0.26,
+          "http_request_time_ms": 956.64,
+          "total_processing_time_ms": 956.9,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":499,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 256,
+          "db_read_time_ms": 0.26,
+          "http_request_time_ms": 953.61,
+          "total_processing_time_ms": 953.87,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":500,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 256,
+          "db_read_time_ms": 0.28,
+          "http_request_time_ms": 946.77,
+          "total_processing_time_ms": 947.05,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":501,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 256,
+          "db_read_time_ms": 0.28,
+          "http_request_time_ms": 967.8,
+          "total_processing_time_ms": 968.08,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":502,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 256,
+          "db_read_time_ms": 0.27,
+          "http_request_time_ms": 962.29,
+          "total_processing_time_ms": 962.57,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":503,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 257,
+          "db_read_time_ms": 0.29,
+          "http_request_time_ms": 975.15,
+          "total_processing_time_ms": 975.45,
           "success": true,
           "error_message": null
         }
       ],
       "workflow": {
-        "avg_db_read_time_s": 0.0008,
-        "p95_db_read_time_s": 0.00128,
-        "p99_db_read_time_s": 0.00132,
-        "std_db_read_time_s": 0.00054,
-        "avg_http_send_time_s": 0.96053,
-        "p95_http_send_time_s": 0.97092,
-        "p99_http_send_time_s": 0.97184,
-        "std_http_send_time_s": 0.01154,
-        "avg_total_processing_time_s": 0.96133,
-        "p95_total_processing_time_s": 0.97123,
-        "p99_total_processing_time_s": 0.97211,
-        "std_total_processing_time_s": 0.011,
-        "avg_response_size_bytes": 255.0,
-        "throughput_msg_per_sec": 1.02,
-        "total_benchmark_duration_s": 1.9531,
-        "successful_runs": 2,
+        "avg_db_read_time_s": 0.00035,
+        "p95_db_read_time_s": 0.00072,
+        "p99_db_read_time_s": 0.00101,
+        "std_db_read_time_s": 0.00024,
+        "avg_http_send_time_s": 0.95816,
+        "p95_http_send_time_s": 0.97192,
+        "p99_http_send_time_s": 0.9745,
+        "std_http_send_time_s": 0.01082,
+        "avg_total_processing_time_s": 0.95851,
+        "p95_total_processing_time_s": 0.97221,
+        "p99_total_processing_time_s": 0.9748,
+        "std_total_processing_time_s": 0.0107,
+        "avg_response_size_bytes": 256.1,
+        "throughput_msg_per_sec": 1.03,
+        "total_benchmark_duration_s": 9.7162,
+        "successful_runs": 10,
         "failed_runs": 0,
-        "total_runs": 2,
+        "total_runs": 10,
         "success_rate_percent": 100.0,
-        "cpu_time_percent": 0.8,
-        "memory_increase_mb": 0.17
+        "cpu_time_percent": 0.48,
+        "memory_increase_mb": 0.13
       }
     },
     "urllib3": {
@@ -179,47 +419,127 @@
       "run_details": [
         {
           "status_code": 200,
-          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":32,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper-",
-          "response_size_bytes": 254,
-          "db_read_time_ms": 1.12,
-          "http_request_time_ms": 1013.02,
-          "total_processing_time_ms": 1014.14,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":504,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 255,
+          "db_read_time_ms": 1.06,
+          "http_request_time_ms": 982.79,
+          "total_processing_time_ms": 983.85,
           "success": true,
           "error_message": null
         },
         {
           "status_code": 200,
-          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":33,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper-",
-          "response_size_bytes": 254,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":505,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 255,
+          "db_read_time_ms": 0.28,
+          "http_request_time_ms": 432.16,
+          "total_processing_time_ms": 432.44,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":506,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 255,
+          "db_read_time_ms": 0.28,
+          "http_request_time_ms": 458.0,
+          "total_processing_time_ms": 458.29,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":507,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 255,
+          "db_read_time_ms": 0.27,
+          "http_request_time_ms": 445.37,
+          "total_processing_time_ms": 445.64,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":508,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 255,
+          "db_read_time_ms": 0.28,
+          "http_request_time_ms": 442.45,
+          "total_processing_time_ms": 442.73,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":509,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 255,
+          "db_read_time_ms": 0.28,
+          "http_request_time_ms": 453.32,
+          "total_processing_time_ms": 453.61,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":510,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 255,
+          "db_read_time_ms": 0.28,
+          "http_request_time_ms": 450.42,
+          "total_processing_time_ms": 450.7,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":511,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 255,
+          "db_read_time_ms": 0.3,
+          "http_request_time_ms": 443.74,
+          "total_processing_time_ms": 444.04,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":512,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 255,
           "db_read_time_ms": 0.32,
-          "http_request_time_ms": 553.88,
-          "total_processing_time_ms": 554.2,
+          "http_request_time_ms": 452.86,
+          "total_processing_time_ms": 453.18,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":513,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 256,
+          "db_read_time_ms": 0.26,
+          "http_request_time_ms": 479.96,
+          "total_processing_time_ms": 480.22,
           "success": true,
           "error_message": null
         }
       ],
       "workflow": {
-        "avg_db_read_time_s": 0.00072,
-        "p95_db_read_time_s": 0.00108,
-        "p99_db_read_time_s": 0.00111,
-        "std_db_read_time_s": 0.0004,
-        "avg_http_send_time_s": 0.78345,
-        "p95_http_send_time_s": 0.99006,
-        "p99_http_send_time_s": 1.00843,
-        "std_http_send_time_s": 0.22957,
-        "avg_total_processing_time_s": 0.78417,
-        "p95_total_processing_time_s": 0.99114,
-        "p99_total_processing_time_s": 1.00954,
-        "std_total_processing_time_s": 0.22997,
-        "avg_response_size_bytes": 254.0,
-        "throughput_msg_per_sec": 1.25,
-        "total_benchmark_duration_s": 1.5967,
-        "successful_runs": 2,
+        "avg_db_read_time_s": 0.00036,
+        "p95_db_read_time_s": 0.00073,
+        "p99_db_read_time_s": 0.00099,
+        "std_db_read_time_s": 0.00023,
+        "avg_http_send_time_s": 0.50411,
+        "p95_http_send_time_s": 0.75652,
+        "p99_http_send_time_s": 0.93754,
+        "std_http_send_time_s": 0.16,
+        "avg_total_processing_time_s": 0.50447,
+        "p95_total_processing_time_s": 0.75722,
+        "p99_total_processing_time_s": 0.93852,
+        "std_total_processing_time_s": 0.16023,
+        "avg_response_size_bytes": 255.1,
+        "throughput_msg_per_sec": 1.97,
+        "total_benchmark_duration_s": 5.0712,
+        "successful_runs": 10,
         "failed_runs": 0,
-        "total_runs": 2,
+        "total_runs": 10,
         "success_rate_percent": 100.0,
-        "cpu_time_percent": 0.98,
-        "memory_increase_mb": 0.3
+        "cpu_time_percent": 0.31,
+        "memory_increase_mb": 0.15
       }
     },
     "uplink": {
@@ -229,47 +549,127 @@
       "run_details": [
         {
           "status_code": 200,
-          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":34,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper-",
-          "response_size_bytes": 253,
-          "db_read_time_ms": 0.29,
-          "http_request_time_ms": 979.22,
-          "total_processing_time_ms": 979.5,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":514,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 254,
+          "db_read_time_ms": 0.31,
+          "http_request_time_ms": 1035.51,
+          "total_processing_time_ms": 1035.82,
           "success": true,
           "error_message": null
         },
         {
           "status_code": 200,
-          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":35,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper-",
-          "response_size_bytes": 253,
-          "db_read_time_ms": 0.31,
-          "http_request_time_ms": 436.43,
-          "total_processing_time_ms": 436.73,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":515,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 254,
+          "db_read_time_ms": 0.21,
+          "http_request_time_ms": 856.04,
+          "total_processing_time_ms": 856.25,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":516,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 254,
+          "db_read_time_ms": 0.22,
+          "http_request_time_ms": 449.96,
+          "total_processing_time_ms": 450.17,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":517,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 254,
+          "db_read_time_ms": 0.24,
+          "http_request_time_ms": 431.83,
+          "total_processing_time_ms": 432.08,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":518,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 254,
+          "db_read_time_ms": 0.21,
+          "http_request_time_ms": 441.97,
+          "total_processing_time_ms": 442.19,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":519,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 254,
+          "db_read_time_ms": 0.22,
+          "http_request_time_ms": 439.93,
+          "total_processing_time_ms": 440.15,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":520,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 254,
+          "db_read_time_ms": 0.29,
+          "http_request_time_ms": 431.85,
+          "total_processing_time_ms": 432.14,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":521,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 254,
+          "db_read_time_ms": 0.22,
+          "http_request_time_ms": 431.86,
+          "total_processing_time_ms": 432.08,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":522,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 254,
+          "db_read_time_ms": 0.21,
+          "http_request_time_ms": 434.03,
+          "total_processing_time_ms": 434.25,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":523,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 255,
+          "db_read_time_ms": 0.28,
+          "http_request_time_ms": 435.84,
+          "total_processing_time_ms": 436.12,
           "success": true,
           "error_message": null
         }
       ],
       "workflow": {
-        "avg_db_read_time_s": 0.0003,
-        "p95_db_read_time_s": 0.00031,
+        "avg_db_read_time_s": 0.00024,
+        "p95_db_read_time_s": 0.0003,
         "p99_db_read_time_s": 0.00031,
-        "std_db_read_time_s": 1e-05,
-        "avg_http_send_time_s": 0.70783,
-        "p95_http_send_time_s": 0.95208,
-        "p99_http_send_time_s": 0.97379,
-        "std_http_send_time_s": 0.2714,
-        "avg_total_processing_time_s": 0.70812,
-        "p95_total_processing_time_s": 0.95236,
-        "p99_total_processing_time_s": 0.97407,
-        "std_total_processing_time_s": 0.27138,
-        "avg_response_size_bytes": 253.0,
-        "throughput_msg_per_sec": 1.41,
-        "total_benchmark_duration_s": 1.4169,
-        "successful_runs": 2,
+        "std_db_read_time_s": 4e-05,
+        "avg_http_send_time_s": 0.53888,
+        "p95_http_send_time_s": 0.95475,
+        "p99_http_send_time_s": 1.01936,
+        "std_http_send_time_s": 0.20744,
+        "avg_total_processing_time_s": 0.53912,
+        "p95_total_processing_time_s": 0.95501,
+        "p99_total_processing_time_s": 1.01966,
+        "std_total_processing_time_s": 0.20745,
+        "avg_response_size_bytes": 254.1,
+        "throughput_msg_per_sec": 1.85,
+        "total_benchmark_duration_s": 5.392,
+        "successful_runs": 10,
         "failed_runs": 0,
-        "total_runs": 2,
+        "total_runs": 10,
         "success_rate_percent": 100.0,
-        "cpu_time_percent": 1.1,
-        "memory_increase_mb": 0.02
+        "cpu_time_percent": 0.29,
+        "memory_increase_mb": 0.03
       }
     },
     "ptb": {
@@ -280,46 +680,126 @@
         {
           "status_code": 200,
           "response_text_snippet": "{\"channel_chat_created\": false, \"delete_chat_photo\": false, \"group_chat_created\": false, \"supergroup",
-          "response_size_bytes": 372,
-          "db_read_time_ms": 0.27,
-          "http_request_time_ms": 444.2,
-          "total_processing_time_ms": 444.47,
+          "response_size_bytes": 373,
+          "db_read_time_ms": 0.21,
+          "http_request_time_ms": 434.28,
+          "total_processing_time_ms": 434.49,
           "success": true,
           "error_message": null
         },
         {
           "status_code": 200,
           "response_text_snippet": "{\"channel_chat_created\": false, \"delete_chat_photo\": false, \"group_chat_created\": false, \"supergroup",
-          "response_size_bytes": 372,
+          "response_size_bytes": 373,
+          "db_read_time_ms": 0.27,
+          "http_request_time_ms": 439.95,
+          "total_processing_time_ms": 440.21,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"channel_chat_created\": false, \"delete_chat_photo\": false, \"group_chat_created\": false, \"supergroup",
+          "response_size_bytes": 373,
+          "db_read_time_ms": 0.29,
+          "http_request_time_ms": 440.05,
+          "total_processing_time_ms": 440.34,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"channel_chat_created\": false, \"delete_chat_photo\": false, \"group_chat_created\": false, \"supergroup",
+          "response_size_bytes": 373,
+          "db_read_time_ms": 0.22,
+          "http_request_time_ms": 437.74,
+          "total_processing_time_ms": 437.97,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"channel_chat_created\": false, \"delete_chat_photo\": false, \"group_chat_created\": false, \"supergroup",
+          "response_size_bytes": 373,
+          "db_read_time_ms": 0.29,
+          "http_request_time_ms": 434.23,
+          "total_processing_time_ms": 434.52,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"channel_chat_created\": false, \"delete_chat_photo\": false, \"group_chat_created\": false, \"supergroup",
+          "response_size_bytes": 373,
+          "db_read_time_ms": 0.25,
+          "http_request_time_ms": 443.45,
+          "total_processing_time_ms": 443.7,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"channel_chat_created\": false, \"delete_chat_photo\": false, \"group_chat_created\": false, \"supergroup",
+          "response_size_bytes": 373,
+          "db_read_time_ms": 0.21,
+          "http_request_time_ms": 457.93,
+          "total_processing_time_ms": 458.14,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"channel_chat_created\": false, \"delete_chat_photo\": false, \"group_chat_created\": false, \"supergroup",
+          "response_size_bytes": 373,
           "db_read_time_ms": 0.23,
-          "http_request_time_ms": 475.96,
-          "total_processing_time_ms": 476.19,
+          "http_request_time_ms": 437.86,
+          "total_processing_time_ms": 438.08,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"channel_chat_created\": false, \"delete_chat_photo\": false, \"group_chat_created\": false, \"supergroup",
+          "response_size_bytes": 373,
+          "db_read_time_ms": 0.22,
+          "http_request_time_ms": 443.91,
+          "total_processing_time_ms": 444.13,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"channel_chat_created\": false, \"delete_chat_photo\": false, \"group_chat_created\": false, \"supergroup",
+          "response_size_bytes": 374,
+          "db_read_time_ms": 0.24,
+          "http_request_time_ms": 532.24,
+          "total_processing_time_ms": 532.47,
           "success": true,
           "error_message": null
         }
       ],
       "workflow": {
-        "avg_db_read_time_s": 0.00025,
-        "p95_db_read_time_s": 0.00027,
-        "p99_db_read_time_s": 0.00027,
-        "std_db_read_time_s": 2e-05,
-        "avg_http_send_time_s": 0.46008,
-        "p95_http_send_time_s": 0.47437,
-        "p99_http_send_time_s": 0.47564,
-        "std_http_send_time_s": 0.01588,
-        "avg_total_processing_time_s": 0.46033,
-        "p95_total_processing_time_s": 0.4746,
-        "p99_total_processing_time_s": 0.47587,
-        "std_total_processing_time_s": 0.01586,
-        "avg_response_size_bytes": 372.0,
-        "throughput_msg_per_sec": 0.99,
-        "total_benchmark_duration_s": 2.0271,
-        "successful_runs": 2,
+        "avg_db_read_time_s": 0.00024,
+        "p95_db_read_time_s": 0.00029,
+        "p99_db_read_time_s": 0.00029,
+        "std_db_read_time_s": 3e-05,
+        "avg_http_send_time_s": 0.45016,
+        "p95_http_send_time_s": 0.4988,
+        "p99_http_send_time_s": 0.52555,
+        "std_http_send_time_s": 0.02811,
+        "avg_total_processing_time_s": 0.45041,
+        "p95_total_processing_time_s": 0.49902,
+        "p99_total_processing_time_s": 0.52578,
+        "std_total_processing_time_s": 0.0281,
+        "avg_response_size_bytes": 373.1,
+        "throughput_msg_per_sec": 1.78,
+        "total_benchmark_duration_s": 5.6171,
+        "successful_runs": 10,
         "failed_runs": 0,
-        "total_runs": 2,
+        "total_runs": 10,
         "success_rate_percent": 100.0,
-        "cpu_time_percent": 16.96,
-        "memory_increase_mb": 1.33
+        "cpu_time_percent": 6.68,
+        "memory_increase_mb": 1.43
       }
     },
     "pytelegrambotapi": {
@@ -329,214 +809,294 @@
       "run_details": [
         {
           "status_code": 200,
-          "response_text_snippet": "{\"message_id\": 38, \"from\": {\"id\": 7944633759, \"is_bot\": true, \"first_name\": \"Rock-Paper-Scissors\", \"",
-          "response_size_bytes": 263,
-          "db_read_time_ms": 0.15,
-          "http_request_time_ms": 956.27,
-          "total_processing_time_ms": 956.42,
+          "response_text_snippet": "{\"message_id\": 534, \"from\": {\"id\": 7944633759, \"is_bot\": true, \"first_name\": \"Rock-Paper-Scissors\", ",
+          "response_size_bytes": 264,
+          "db_read_time_ms": 0.16,
+          "http_request_time_ms": 939.83,
+          "total_processing_time_ms": 939.98,
           "success": true,
           "error_message": null
         },
         {
           "status_code": 200,
-          "response_text_snippet": "{\"message_id\": 39, \"from\": {\"id\": 7944633759, \"is_bot\": true, \"first_name\": \"Rock-Paper-Scissors\", \"",
-          "response_size_bytes": 263,
-          "db_read_time_ms": 0.24,
-          "http_request_time_ms": 438.86,
-          "total_processing_time_ms": 439.09,
+          "response_text_snippet": "{\"message_id\": 535, \"from\": {\"id\": 7944633759, \"is_bot\": true, \"first_name\": \"Rock-Paper-Scissors\", ",
+          "response_size_bytes": 264,
+          "db_read_time_ms": 0.28,
+          "http_request_time_ms": 434.12,
+          "total_processing_time_ms": 434.4,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"message_id\": 536, \"from\": {\"id\": 7944633759, \"is_bot\": true, \"first_name\": \"Rock-Paper-Scissors\", ",
+          "response_size_bytes": 264,
+          "db_read_time_ms": 0.26,
+          "http_request_time_ms": 432.4,
+          "total_processing_time_ms": 432.66,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"message_id\": 537, \"from\": {\"id\": 7944633759, \"is_bot\": true, \"first_name\": \"Rock-Paper-Scissors\", ",
+          "response_size_bytes": 264,
+          "db_read_time_ms": 0.28,
+          "http_request_time_ms": 434.75,
+          "total_processing_time_ms": 435.03,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"message_id\": 538, \"from\": {\"id\": 7944633759, \"is_bot\": true, \"first_name\": \"Rock-Paper-Scissors\", ",
+          "response_size_bytes": 264,
+          "db_read_time_ms": 0.23,
+          "http_request_time_ms": 434.85,
+          "total_processing_time_ms": 435.07,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"message_id\": 539, \"from\": {\"id\": 7944633759, \"is_bot\": true, \"first_name\": \"Rock-Paper-Scissors\", ",
+          "response_size_bytes": 264,
+          "db_read_time_ms": 0.23,
+          "http_request_time_ms": 442.37,
+          "total_processing_time_ms": 442.6,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"message_id\": 540, \"from\": {\"id\": 7944633759, \"is_bot\": true, \"first_name\": \"Rock-Paper-Scissors\", ",
+          "response_size_bytes": 264,
+          "db_read_time_ms": 0.33,
+          "http_request_time_ms": 440.62,
+          "total_processing_time_ms": 440.95,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"message_id\": 541, \"from\": {\"id\": 7944633759, \"is_bot\": true, \"first_name\": \"Rock-Paper-Scissors\", ",
+          "response_size_bytes": 264,
+          "db_read_time_ms": 0.23,
+          "http_request_time_ms": 453.53,
+          "total_processing_time_ms": 453.76,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"message_id\": 542, \"from\": {\"id\": 7944633759, \"is_bot\": true, \"first_name\": \"Rock-Paper-Scissors\", ",
+          "response_size_bytes": 264,
+          "db_read_time_ms": 0.26,
+          "http_request_time_ms": 435.4,
+          "total_processing_time_ms": 435.66,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text_snippet": "{\"message_id\": 543, \"from\": {\"id\": 7944633759, \"is_bot\": true, \"first_name\": \"Rock-Paper-Scissors\", ",
+          "response_size_bytes": 265,
+          "db_read_time_ms": 0.27,
+          "http_request_time_ms": 430.46,
+          "total_processing_time_ms": 430.73,
           "success": true,
           "error_message": null
         }
       ],
       "workflow": {
-        "avg_db_read_time_s": 0.00019,
-        "p95_db_read_time_s": 0.00024,
-        "p99_db_read_time_s": 0.00024,
+        "avg_db_read_time_s": 0.00025,
+        "p95_db_read_time_s": 0.00031,
+        "p99_db_read_time_s": 0.00033,
         "std_db_read_time_s": 4e-05,
-        "avg_http_send_time_s": 0.69757,
-        "p95_http_send_time_s": 0.9304,
-        "p99_http_send_time_s": 0.9511,
-        "std_http_send_time_s": 0.2587,
-        "avg_total_processing_time_s": 0.69776,
-        "p95_total_processing_time_s": 0.93055,
-        "p99_total_processing_time_s": 0.95125,
-        "std_total_processing_time_s": 0.25866,
-        "avg_response_size_bytes": 263.0,
-        "throughput_msg_per_sec": 1.43,
-        "total_benchmark_duration_s": 1.396,
-        "successful_runs": 2,
+        "avg_http_send_time_s": 0.48783,
+        "p95_http_send_time_s": 0.72099,
+        "p99_http_send_time_s": 0.89606,
+        "std_http_send_time_s": 0.1508,
+        "avg_total_processing_time_s": 0.48808,
+        "p95_total_processing_time_s": 0.72118,
+        "p99_total_processing_time_s": 0.89622,
+        "std_total_processing_time_s": 0.15076,
+        "avg_response_size_bytes": 264.1,
+        "throughput_msg_per_sec": 2.05,
+        "total_benchmark_duration_s": 4.8813,
+        "successful_runs": 10,
         "failed_runs": 0,
-        "total_runs": 2,
+        "total_runs": 10,
         "success_rate_percent": 100.0,
-        "cpu_time_percent": 0.0,
+        "cpu_time_percent": 0.32,
         "memory_increase_mb": 0.28
       }
     }
   },
   "overall_summary": {
     "fastest_avg_total_processing_time_library": "ptb",
-    "fastest_avg_total_processing_time_s": 0.46033,
+    "fastest_avg_total_processing_time_s": 0.45041,
     "slowest_avg_total_processing_time_library": "requests",
-    "slowest_avg_total_processing_time_s": 0.96133,
-    "highest_throughput_library": "aiohttp",
-    "highest_throughput_msg_per_sec": 1.43,
+    "slowest_avg_total_processing_time_s": 0.95851,
+    "highest_throughput_library": "pytelegrambotapi",
+    "highest_throughput_msg_per_sec": 2.05,
     "most_consistent_library_std_dev": "requests",
-    "lowest_std_dev_total_time_s": 0.011,
+    "lowest_std_dev_total_time_s": 0.0107,
     "highest_success_rate_library": "httpx",
     "highest_success_rate_percent": 100.0,
     "lowest_memory_library": "uplink",
-    "lowest_memory_increase_mb": 0.02,
-    "lowest_cpu_library": "aiohttp",
-    "lowest_cpu_time_percent": 0.0,
+    "lowest_memory_increase_mb": 0.03,
+    "lowest_cpu_library": "uplink",
+    "lowest_cpu_time_percent": 0.29,
     "rankings": {
       "avg_total_processing_time_s": [
         [
           "ptb",
-          0.46033
+          0.45041
         ],
         [
           "pytelegrambotapi",
-          0.69776
-        ],
-        [
-          "aiohttp",
-          0.7014
-        ],
-        [
-          "uplink",
-          0.70812
+          0.48808
         ],
         [
           "urllib3",
-          0.78417
+          0.50447
         ],
         [
           "httpx",
-          0.78625
+          0.50469
+        ],
+        [
+          "aiohttp",
+          0.51546
+        ],
+        [
+          "uplink",
+          0.53912
         ],
         [
           "requests",
-          0.96133
+          0.95851
         ]
       ],
       "throughput_msg_per_sec": [
         [
-          "aiohttp",
-          1.43
-        ],
-        [
           "pytelegrambotapi",
-          1.43
-        ],
-        [
-          "uplink",
-          1.41
+          2.05
         ],
         [
           "urllib3",
-          1.25
+          1.97
+        ],
+        [
+          "aiohttp",
+          1.94
         ],
         [
           "httpx",
-          1.12
+          1.9
         ],
         [
-          "requests",
-          1.02
+          "uplink",
+          1.85
         ],
         [
           "ptb",
-          0.99
+          1.78
+        ],
+        [
+          "requests",
+          1.03
         ]
       ],
       "std_total_processing_time_s": [
         [
           "requests",
-          0.011
+          0.0107
         ],
         [
           "ptb",
-          0.01586
-        ],
-        [
-          "urllib3",
-          0.22997
+          0.0281
         ],
         [
           "pytelegrambotapi",
-          0.25866
+          0.15076
         ],
         [
-          "httpx",
-          0.26316
+          "urllib3",
+          0.16023
         ],
         [
           "aiohttp",
-          0.26326
+          0.16027
+        ],
+        [
+          "httpx",
+          0.16583
         ],
         [
           "uplink",
-          0.27138
+          0.20745
         ]
       ],
       "avg_db_read_time_s": [
         [
-          "pytelegrambotapi",
-          0.00019
+          "uplink",
+          0.00024
         ],
         [
           "ptb",
-          0.00025
+          0.00024
         ],
         [
           "aiohttp",
-          0.00026
+          0.00025
         ],
         [
-          "uplink",
-          0.0003
-        ],
-        [
-          "urllib3",
-          0.00072
+          "pytelegrambotapi",
+          0.00025
         ],
         [
           "requests",
-          0.0008
+          0.00035
+        ],
+        [
+          "urllib3",
+          0.00036
         ],
         [
           "httpx",
-          0.00098
+          0.00041
         ]
       ],
       "avg_http_send_time_s": [
         [
           "ptb",
-          0.46008
+          0.45016
         ],
         [
           "pytelegrambotapi",
-          0.69757
-        ],
-        [
-          "aiohttp",
-          0.70115
-        ],
-        [
-          "uplink",
-          0.70783
+          0.48783
         ],
         [
           "urllib3",
-          0.78345
+          0.50411
         ],
         [
           "httpx",
-          0.78528
+          0.50428
+        ],
+        [
+          "aiohttp",
+          0.51521
+        ],
+        [
+          "uplink",
+          0.53888
         ],
         [
           "requests",
-          0.96053
+          0.95816
         ]
       ],
       "success_rate": [
@@ -572,91 +1132,91 @@
       "avg_response_size_bytes": [
         [
           "httpx",
-          252.0
+          253.1
         ],
         [
           "uplink",
-          253.0
+          254.1
         ],
         [
           "aiohttp",
-          254.0
+          255.1
         ],
         [
           "urllib3",
-          254.0
+          255.1
         ],
         [
           "requests",
-          255.0
+          256.1
         ],
         [
           "pytelegrambotapi",
-          263.0
+          264.1
         ],
         [
           "ptb",
-          372.0
+          373.1
         ]
       ],
       "memory_increase_mb": [
         [
           "uplink",
-          0.02
+          0.03
         ],
         [
           "requests",
-          0.17
+          0.13
+        ],
+        [
+          "urllib3",
+          0.15
         ],
         [
           "pytelegrambotapi",
           0.28
         ],
         [
-          "urllib3",
-          0.3
+          "ptb",
+          1.43
         ],
         [
           "aiohttp",
-          1.24
-        ],
-        [
-          "ptb",
-          1.33
+          1.46
         ],
         [
           "httpx",
-          2.76
+          2.95
         ]
       ],
       "cpu_time_percent": [
         [
+          "uplink",
+          0.29
+        ],
+        [
           "aiohttp",
-          0.0
-        ],
-        [
-          "pytelegrambotapi",
-          0.0
-        ],
-        [
-          "requests",
-          0.8
+          0.3
         ],
         [
           "urllib3",
-          0.98
+          0.31
         ],
         [
-          "uplink",
-          1.1
+          "pytelegrambotapi",
+          0.32
+        ],
+        [
+          "requests",
+          0.48
         ],
         [
           "httpx",
-          10.51
+          4.75
         ],
         [
           "ptb",
-          16.96
+          6.68
         ]
       ]
     }
