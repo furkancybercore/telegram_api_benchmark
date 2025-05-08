@@ -63,7 +63,7 @@ def _generate_random_message(length=50):
     return ''.join(random.choice(chars) for _ in range(length))
 
 def _populate_database_if_empty():
-    """Populates the database with sample messages. Clears existing messages first."""
+    """Populates the database with library-specific messages. Clears existing messages first."""
     conn = None
     try:
         conn = psycopg2.connect(config.DATABASE_URL_SYNC)
@@ -74,18 +74,27 @@ def _populate_database_if_empty():
         cur.execute(f"TRUNCATE TABLE {config.DB_TABLE_NAME} RESTART IDENTITY CASCADE;") # Clears table and resets ID sequence
         print(f"Table '{config.DB_TABLE_NAME}' cleared.")
 
-        # Now proceed to populate
-        # cur.execute(f"SELECT COUNT(*) FROM {config.DB_TABLE_NAME};") # Count will be 0 now
-        # count = cur.fetchone()[0]
-        # if count == 0: # This condition will always be true after TRUNCATE
-        print(f"Populating '{config.DB_TABLE_NAME}' with {config.NUM_MESSAGES} sample messages...")
-        messages = [(_generate_random_message(),) for _ in range(config.NUM_MESSAGES)]
+        # List of libraries to benchmark - must match those in main.py
+        libraries = [
+            "Httpx",
+            "Aiohttp", 
+            "Requests",
+            "Urllib3",
+            "Uplink",
+            "PTB",  # python-telegram-bot
+            "PyTelegramBotAPI"
+        ]
+        
+        print(f"Populating '{config.DB_TABLE_NAME}' with library-specific messages...")
+        
+        # Create one base message per library
+        library_messages = [(f"{lib} Test",) for lib in libraries]
+        
         insert_query = f"INSERT INTO {config.DB_TABLE_NAME} (content) VALUES (%s)"
-        cur.executemany(insert_query, messages)
+        cur.executemany(insert_query, library_messages)
         conn.commit()
-        print(f"Successfully inserted {len(messages)} messages.")
-        # else:
-        #     print(f"Table '{config.DB_TABLE_NAME}' already contains {count} messages. Skipping population.") # This part is no longer needed
+        print(f"Successfully inserted {len(library_messages)} library-specific messages.")
+        
         cur.close()
     except Exception as e:
         print(f"Error populating database: {e}")
@@ -107,28 +116,37 @@ def get_sync_db_connection():
         if conn:
             conn.close()
 
-def read_message_sync(conn):
-    """Reads a single unsent message (oldest first). Returns (id, content) or (None, None)."""
+def read_message_sync(conn, library_name=None):
+    """
+    Reads a message from the database.
+    If library_name is provided, tries to find a message containing that library name.
+    Returns (id, content) or (None, None).
+    """
     with conn.cursor() as cur:
-        # Fetch one unsent message, mark it as sent (or about to be sent)
-        # Using FOR UPDATE SKIP LOCKED is safer for concurrency, but maybe overkill here.
-        # Let's just fetch one not marked as sent.
+        if library_name:
+            # First try to find a specific message for this library
+            cur.execute(f"""
+                SELECT id, content FROM {config.DB_TABLE_NAME}
+                WHERE content LIKE %s
+                ORDER BY id
+                LIMIT 1;
+            """, (f"%{library_name}%",))
+            
+            row = cur.fetchone()
+            if row:
+                return row
+        
+        # If no library_name provided or no specific message found, get any message
         cur.execute(f"""
             SELECT id, content FROM {config.DB_TABLE_NAME}
-            WHERE sent = FALSE
             ORDER BY id
-            LIMIT 1
-            FOR UPDATE SKIP LOCKED;
+            LIMIT 1;
         """)
         row = cur.fetchone()
         if row:
-            message_id, content = row
-            # Optionally mark as sent immediately
-            # cur.execute(f"UPDATE {config.DB_TABLE_NAME} SET sent = TRUE WHERE id = %s;", (message_id,))
-            # conn.commit() # Commit if not using autocommit connection
-            return message_id, content
+            return row
         else:
-            return None, None # No unsent messages found
+            return None, None
 
 # --- Asynchronous DB Operations ---
 
@@ -167,21 +185,32 @@ async def get_async_db_connection():
     async with pool.acquire() as connection:
         yield connection
 
-async def read_message_async(conn):
-    """Reads a single unsent message asynchronously. Returns (id, content) or (None, None)."""
-    async with conn.transaction():
-        # Fetch one unsent message
+async def read_message_async(conn, library_name=None):
+    """
+    Reads a message asynchronously from the database.
+    If library_name is provided, tries to find a message containing that library name.
+    Returns (id, content) or (None, None).
+    """
+    if library_name:
+        # First try to find a specific message for this library
         row = await conn.fetchrow(f"""
             SELECT id, content FROM {config.DB_TABLE_NAME}
-            WHERE sent = FALSE
+            WHERE content LIKE $1
             ORDER BY id
-            LIMIT 1
-            FOR UPDATE SKIP LOCKED;
-        """)
+            LIMIT 1;
+        """, f"%{library_name}%")
+        
         if row:
-            message_id, content = row['id'], row['content']
-            # Optionally mark as sent
-            # await conn.execute(f"UPDATE {config.DB_TABLE_NAME} SET sent = TRUE WHERE id = $1;", message_id)
-            return message_id, content
-        else:
-            return None, None 
+            return row['id'], row['content']
+    
+    # If no library_name provided or no specific message found, get any message
+    row = await conn.fetchrow(f"""
+        SELECT id, content FROM {config.DB_TABLE_NAME}
+        ORDER BY id
+        LIMIT 1;
+    """)
+    
+    if row:
+        return row['id'], row['content']
+    else:
+        return None, None 

@@ -68,8 +68,8 @@ class BaseSender(ABC):
                     for i in range(num_messages):
                         start_loop_time = time.perf_counter()
                         db_read_start_time = time.perf_counter()
-                        # Fetch a row from DB to simulate a real workflow, but we'll generate payload on the fly
-                        message_id, _ = read_message_sync(db_conn) # Original payload from DB ignored for sending
+                        # Fetch a row from DB - specifically find message for this library
+                        message_id, db_text_payload = read_message_sync(db_conn, self.library_name)
                         db_read_end_time = time.perf_counter()
                         db_read_time_ms = (db_read_end_time - db_read_start_time) * 1000
 
@@ -77,9 +77,14 @@ class BaseSender(ABC):
                             print(f"Warning: No more messages found in DB for run {i+1}. Stopping early for {self.library_name}.")
                             break
                         
-                        # Generate unique message payload for this specific call
-                        timestamp_str = datetime.datetime.now().strftime('%y%m%d_%H%M%S_%f')[:-3] # YYMMDD_HHMMSS_ms. No escaping needed for plain text.
-                        actual_text_payload = f"{self.library_name} Test {timestamp_str}_{i+1}"
+                        # Use the message from DB and append test number
+                        # If the DB doesn't have library-specific messages yet, create a fallback
+                        if db_text_payload and self.library_name in db_text_payload:
+                            # Use the library-specific message from DB
+                            actual_text_payload = f"{db_text_payload}_{i+1}"
+                        else:
+                            # Fallback if DB content doesn't match the library
+                            actual_text_payload = f"{self.library_name} Test_{i+1}"
 
                         print(f"Sending message {i+1}/{num_messages} (DB ID: {message_id}, Lib: {self.library_name}) with content: '{actual_text_payload[:30]}...'")
                         try:
@@ -128,8 +133,8 @@ class BaseSender(ABC):
                         for i in range(num_messages):
                             start_loop_time = time.perf_counter()
                             db_read_start_time = time.perf_counter()
-                            # Fetch a row from DB to simulate a real workflow, but we'll generate payload on the fly
-                            message_id, _ = await read_message_async(db_conn) # Original payload from DB ignored for sending
+                            # Fetch a row from DB - specifically find message for this library
+                            message_id, db_text_payload = await read_message_async(db_conn, self.library_name)
                             db_read_end_time = time.perf_counter()
                             db_read_time_ms = (db_read_end_time - db_read_start_time) * 1000
 
@@ -137,9 +142,14 @@ class BaseSender(ABC):
                                 print(f"Warning: No more messages found in DB for run {i+1}. Stopping early for {self.library_name}.")
                                 break
                             
-                            # Generate unique message payload for this specific call
-                            timestamp_str = datetime.datetime.now().strftime('%y%m%d_%H%M%S_%f')[:-3] # YYMMDD_HHMMSS_ms. No escaping needed for plain text.
-                            actual_text_payload = f"{self.library_name} Test {timestamp_str}_{i+1}"
+                            # Use the message from DB and append test number
+                            # If the DB doesn't have library-specific messages yet, create a fallback
+                            if db_text_payload and self.library_name in db_text_payload:
+                                # Use the library-specific message from DB
+                                actual_text_payload = f"{db_text_payload}_{i+1}"
+                            else:
+                                # Fallback if DB content doesn't match the library
+                                actual_text_payload = f"{self.library_name} Test_{i+1}"
 
                             print(f"Sending message {i+1}/{num_messages} (DB ID: {message_id}, Lib: {self.library_name}) with content: '{actual_text_payload[:30]}...'")
                             try:
