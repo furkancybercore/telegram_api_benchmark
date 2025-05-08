@@ -10,8 +10,22 @@ from senders.httpx_sender import HttpxSender
 from senders.aiohttp_sender import AiohttpSender
 from senders.requests_sender import RequestsSender
 from senders.urllib3_sender import Urllib3Sender
+from senders.uplink_sender import UplinkSender
+from senders.ptb_sender import PTBSender
+from senders.pytelegrambotapi_sender import PyTelegramBotAPISender
 from reporting import json_reporter, md_reporter
 from database_utils import setup_database, close_async_pool # Import DB utils
+
+# Configuration
+SENDER_CLASSES = {
+    "httpx": HttpxSender,
+    "aiohttp": AiohttpSender,
+    "requests": RequestsSender,
+    "urllib3": Urllib3Sender,
+    "uplink": UplinkSender,
+    "python-telegram-bot": PTBSender,
+    "pytelegrambotapi": PyTelegramBotAPISender,
+}
 
 async def main():
     start_script_time = time.perf_counter()
@@ -30,39 +44,53 @@ async def main():
         print("ERROR: Please configure your TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID in .env file or config.py before running.")
         return
 
-    # Initialize senders
-    senders_to_test = [
-        HttpxSender(config.TELEGRAM_BOT_TOKEN, config.TELEGRAM_CHAT_ID, config.TELEGRAM_API_URL_TEMPLATE),
-        AiohttpSender(config.TELEGRAM_BOT_TOKEN, config.TELEGRAM_CHAT_ID, config.TELEGRAM_API_URL_TEMPLATE),
-        RequestsSender(config.TELEGRAM_BOT_TOKEN, config.TELEGRAM_CHAT_ID, config.TELEGRAM_API_URL_TEMPLATE),
-        Urllib3Sender(config.TELEGRAM_BOT_TOKEN, config.TELEGRAM_CHAT_ID, config.TELEGRAM_API_URL_TEMPLATE),
-    ]
+    # Select senders to run
+    senders_to_run_names = config.LIBRARIES_TO_TEST if config.LIBRARIES_TO_TEST else SENDER_CLASSES.keys()
+    selected_senders = {name: SENDER_CLASSES[name] for name in senders_to_run_names if name in SENDER_CLASSES}
+
+    if not selected_senders:
+        print("No libraries selected or specified to test. Exiting.")
+        print(f"Available libraries: {list(SENDER_CLASSES.keys())}")
+        print(f"Configured to test: {config.LIBRARIES_TO_TEST}")
+        return
+    
+    print(f"Selected libraries for benchmark: {list(selected_senders.keys())}")
 
     # Store results in a dictionary keyed by library name
     benchmark_results_by_library = {}
 
-    for sender in senders_to_test:
-        print(f"\n--- Starting benchmark for {sender.library_name} ---")
+    for name, SenderClass in selected_senders.items(): # Iterate over items (name, class)
+        print(f"\n--- Starting benchmark for {name} ---") # Use name for printing
+        
+        # Instantiate the sender
+        sender_instance = SenderClass(
+            config.TELEGRAM_BOT_TOKEN, 
+            config.TELEGRAM_CHAT_ID, 
+            config.TELEGRAM_API_URL_TEMPLATE,
+            config  # Pass the config module itself
+        )
+
         result_data = None
-        if sender.get_sender_type() == "async":
+        if sender_instance.get_sender_type() == "async": # Use instance to call get_sender_type
             try:
-                result_data = await sender.run_benchmark_async(config.NUM_MESSAGES)
+                result_data = await sender_instance.run_benchmark_async(config.NUM_MESSAGES)
             except NotImplementedError:
-                print(f"{sender.library_name} async benchmark not implemented, skipping.")
+                print(f"{name} async benchmark not implemented, skipping.")
             except Exception as e:
-                print(f"Error during async benchmark for {sender.library_name}: {e}")
+                print(f"Error during async benchmark for {name}: {e}")
         else:  # sync
             try:
-                result_data = sender.run_benchmark(config.NUM_MESSAGES)
+                result_data = sender_instance.run_benchmark(config.NUM_MESSAGES)
             except NotImplementedError:
-                print(f"{sender.library_name} sync benchmark not implemented, skipping.")
+                print(f"{name} sync benchmark not implemented, skipping.")
             except Exception as e:
-                print(f"Error during sync benchmark for {sender.library_name}: {e}")
+                print(f"Error during sync benchmark for {name}: {e}")
         
         if result_data:
-            benchmark_results_by_library[sender.library_name.lower()] = result_data
+            # Use the instance's library_name for storing, which should match 'name'
+            benchmark_results_by_library[sender_instance.library_name.lower()] = result_data 
         
-        print(f"--- Finished benchmark for {sender.library_name} ---")
+        print(f"--- Finished benchmark for {name} ---")
 
     # Prepare data for reporting
     # Extract library versions for the report details

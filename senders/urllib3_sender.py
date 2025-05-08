@@ -3,10 +3,21 @@ import json # For encoding the payload
 from .base_sender import BaseSender
 
 class Urllib3Sender(BaseSender):
-    def __init__(self, token, chat_id, api_url_template):
-        super().__init__(token, chat_id, api_url_template)
+    def __init__(self, token, chat_id, api_url_template, config_obj):
+        super().__init__(token, chat_id, api_url_template, config_obj)
         # Create a PoolManager instance. Consider if timeout/retries need adjustment.
         self.http = urllib3.PoolManager()
+        self.api_url = self.api_url_template.format(token=self.token)
+
+    async def initialize_session(self):
+        # urllib3.PoolManager is typically managed synchronously and reused.
+        # No specific async session initialization needed here in the same way as aiohttp/httpx.
+        return self.http # Can return the pool manager or None
+
+    async def close_session(self, session):
+        # urllib3.PoolManager doesn't have an explicit close method for async context like this.
+        # Connections are managed internally.
+        pass
 
     def send_message_sync(self, db_conn, text_payload, message_params):
         data = {

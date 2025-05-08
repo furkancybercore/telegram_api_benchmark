@@ -63,22 +63,29 @@ def _generate_random_message(length=50):
     return ''.join(random.choice(chars) for _ in range(length))
 
 def _populate_database_if_empty():
-    """Populates the database with sample messages if it's empty."""
+    """Populates the database with sample messages. Clears existing messages first."""
     conn = None
     try:
         conn = psycopg2.connect(config.DATABASE_URL_SYNC)
         cur = conn.cursor()
-        cur.execute(f"SELECT COUNT(*) FROM {config.DB_TABLE_NAME};")
-        count = cur.fetchone()[0]
-        if count == 0:
-            print(f"Table '{config.DB_TABLE_NAME}' is empty. Populating with {config.NUM_MESSAGES} sample messages...")
-            messages = [(_generate_random_message(),) for _ in range(config.NUM_MESSAGES)]
-            insert_query = f"INSERT INTO {config.DB_TABLE_NAME} (content) VALUES (%s)"
-            cur.executemany(insert_query, messages)
-            conn.commit()
-            print(f"Successfully inserted {len(messages)} messages.")
-        else:
-            print(f"Table '{config.DB_TABLE_NAME}' already contains {count} messages. Skipping population.")
+
+        # Clear existing messages to ensure a fresh set for each run
+        print(f"Clearing existing messages from '{config.DB_TABLE_NAME}'...")
+        cur.execute(f"TRUNCATE TABLE {config.DB_TABLE_NAME} RESTART IDENTITY CASCADE;") # Clears table and resets ID sequence
+        print(f"Table '{config.DB_TABLE_NAME}' cleared.")
+
+        # Now proceed to populate
+        # cur.execute(f"SELECT COUNT(*) FROM {config.DB_TABLE_NAME};") # Count will be 0 now
+        # count = cur.fetchone()[0]
+        # if count == 0: # This condition will always be true after TRUNCATE
+        print(f"Populating '{config.DB_TABLE_NAME}' with {config.NUM_MESSAGES} sample messages...")
+        messages = [(_generate_random_message(),) for _ in range(config.NUM_MESSAGES)]
+        insert_query = f"INSERT INTO {config.DB_TABLE_NAME} (content) VALUES (%s)"
+        cur.executemany(insert_query, messages)
+        conn.commit()
+        print(f"Successfully inserted {len(messages)} messages.")
+        # else:
+        #     print(f"Table '{config.DB_TABLE_NAME}' already contains {count} messages. Skipping population.") # This part is no longer needed
         cur.close()
     except Exception as e:
         print(f"Error populating database: {e}")

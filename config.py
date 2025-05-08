@@ -14,12 +14,17 @@ if TELEGRAM_BOT_TOKEN == 'YOUR_TELEGRAM_BOT_TOKEN' or TELEGRAM_CHAT_ID == 'YOUR_
 TELEGRAM_API_URL_TEMPLATE = "https://api.telegram.org/bot{token}/sendMessage"
 
 # --- Benchmark Parameters ---
-NUM_MESSAGES = 5  # Number of messages to send for each library
-TEST_MESSAGE_PAYLOAD = "Hello from the Telegram Benchmark Script!"
+NUM_MESSAGES = int(os.getenv('NUM_MESSAGES', 2))  # Number of messages to send for each library
+MAX_CONCURRENT_REQUESTS_PER_LIBRARY = int(os.getenv('MAX_CONCURRENT_REQUESTS_PER_LIBRARY', 50))
+
+# List of library names (keys from SENDER_CLASSES in main.py) to test.
+# If empty or None, all available libraries will be tested.
+# Example: LIBRARIES_TO_TEST = ["httpx", "aiohttp"]
+LIBRARIES_TO_TEST = []  # Test all by default
 
 # --- Report Configuration ---
-REPORTS_DIR = "reports"
-JSON_REPORT_FILENAME = "benchmark_telegram_libs.json"
+REPORTS_DIR = "benchmark_reports"
+JSON_REPORT_FILENAME = "benchmark_report.json"
 MD_REPORT_FILENAME = "benchmark_telegram_libs_report.md"
 
 # --- Project Details (for reporting) ---
@@ -40,4 +45,4 @@ if DB_USER == 'furkan' and DB_PASSWORD == '0000' and DB_HOST == 'localhost':
     print("WARNING: Using default PostgreSQL credentials from config.py. Consider setting DB_HOST, DB_PORT, DB_NAME, DB_USER, and DB_PASSWORD environment variables.")
 
 DB_TABLE_NAME = "messages_to_send"
-DB_SETUP_WAIT_SECONDS = 2 # Seconds to wait after setup before benchmarks 
+DB_SETUP_WAIT_SECONDS = 1 # Seconds to wait after setup before benchmarks 
