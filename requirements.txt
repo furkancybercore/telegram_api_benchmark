@@ -3,5 +3,8 @@ aiohttp==3.9.5
 requests==2.32.3
 urllib3==2.2.2
 python-dotenv==1.0.1
+matplotlib==3.9.0
+numpy==1.26.4
+psutil==5.9.8 # For CPU/memory tracking
 # Add psutil if you plan to implement detailed CPU/memory tracking per library
 # psutil==5.9.8 
