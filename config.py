@@ -6,10 +6,10 @@ load_dotenv() # Load variables from .env file
 # --- Telegram API Configuration ---
 # Fallback to placeholders if not set in environment variables
 TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN', 'YOUR_TELEGRAM_BOT_TOKEN')
-TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID', 'YOUR_TELEGRAM_CHAT_ID')
+TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID', '8123173403')  # Updated to the new chat ID
 
-if TELEGRAM_BOT_TOKEN == 'YOUR_TELEGRAM_BOT_TOKEN' or TELEGRAM_CHAT_ID == 'YOUR_TELEGRAM_CHAT_ID':
-    print("WARNING: Telegram Bot Token or Chat ID is not set. Please create a .env file with TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID or update config.py.")
+if TELEGRAM_BOT_TOKEN == 'YOUR_TELEGRAM_BOT_TOKEN':
+    print("WARNING: Telegram Bot Token is not set. Please create a .env file with TELEGRAM_BOT_TOKEN or update config.py.")
 
 TELEGRAM_API_URL_TEMPLATE = "https://api.telegram.org/bot{token}/sendMessage"
 
@@ -45,4 +45,4 @@ if DB_USER == 'furkan' and DB_PASSWORD == '0000' and DB_HOST == 'localhost':
     print("WARNING: Using default PostgreSQL credentials from config.py. Consider setting DB_HOST, DB_PORT, DB_NAME, DB_USER, and DB_PASSWORD environment variables.")
 
 DB_TABLE_NAME = "messages_to_send"
-DB_SETUP_WAIT_SECONDS = 1 # Seconds to wait after setup before benchmarks 
+DB_SETUP_WAIT_SECONDS = 10 # Seconds to wait after setup before benchmarks 
