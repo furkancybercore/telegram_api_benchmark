@@ -7,6 +7,17 @@ import numpy as np
 # Project specific imports - for accessing config like REPORTS_DIR if needed directly
 # import config # Not strictly needed if output_dir is always passed
 
+# Helper function to add labels to bars
+def add_labels(ax, unit="", format_spec=".2f"):
+    try:
+        decimals = int(format_spec.split('.')[-1][0])
+    except:
+        decimals = 2 # Default
+    fmt = f'%.{decimals}f{unit}' # Construct format string like '%.4fs' or '%.2f%'
+    
+    for container in ax.containers:
+        ax.bar_label(container, fmt=fmt, label_type='edge', fontsize=8, padding=3)
+
 def generate_plots(report_data, output_dir):
     """Generate plots from report data and save them."""
     # Ensure output directory exists
@@ -21,103 +32,125 @@ def generate_plots(report_data, output_dir):
     # Extract library names, ensuring they are strings for plotting
     library_names = [str(key) for key in libraries_data.keys()]
     plot_paths = {}
+    base_colors = ['skyblue', 'lightcoral', 'lightgreen', 'gold', 'lightsalmon', 'plum']
+    colors = base_colors[:len(library_names)] if len(library_names) <= len(base_colors) else base_colors # Adjust colors
 
-    # Metric 1: Average Telegram Send Time (s)
-    avg_tg_send_times_s = []
-    for lib_name in library_names:
-        time_val = libraries_data.get(lib_name, {}).get('workflow', {}).get('avg_telegram_send_time_s', 0)
-        avg_tg_send_times_s.append(float(time_val) if time_val is not None else 0)
+    # --- Time-based Plots (Seconds) ---
+    time_metrics_to_plot = [
+        ("avg_total_processing_time_s", "Avg Total Processing Time (DB+HTTP)", "plot_avg_total_processing_time.png", ".4f"),
+        ("avg_http_send_time_s", "Avg HTTP Send Time", "plot_avg_http_send_time.png", ".4f"),
+        ("avg_db_read_time_s", "Avg DB Read Time", "plot_avg_db_read_time.png", ".5f"),
+        ("p95_total_processing_time_s", "P95 Total Processing Time", "plot_p95_total_time.png", ".4f"),
+        ("p95_http_send_time_s", "P95 HTTP Send Time", "plot_p95_http_time.png", ".4f"),
+        ("std_total_processing_time_s", "Std Dev Total Processing Time", "plot_std_total_time.png", ".4f"), 
+        ("std_http_send_time_s", "Std Dev HTTP Send Time", "plot_std_http_time.png", ".4f"), 
+    ]
 
-    if any(t > 0 for t in avg_tg_send_times_s):
-        plt.figure(figsize=(10, 6))
-        plt.bar(library_names, avg_tg_send_times_s, color=['skyblue', 'lightcoral', 'lightgreen', 'gold', 'lightsalmon'])
-        plt.ylabel('Time (seconds)')
-        plt.title('Average Telegram Send Time per Library (Lower is Better)')
-        plt.xticks(rotation=45, ha="right")
-        plt.tight_layout()
-        path = os.path.join(output_dir, 'plot_avg_telegram_send_time.png')
+    for metric_key, base_title, filename, fmt_spec in time_metrics_to_plot:
+        values = [float(libraries_data.get(lib_name, {}).get('workflow', {}).get(metric_key, 0) or 0) for lib_name in library_names]
+        
+        if any(v != 0 for v in values): # Plot if any non-zero data
+            fig, ax = plt.subplots(figsize=(10, 6))
+            bars = ax.bar(library_names, values, color=colors)
+            ax.set_ylabel('Time (seconds)') 
+            ax.set_title(f"{base_title} (Lower is Better)") 
+            ax.tick_params(axis='x', rotation=45)
+            add_labels(ax, unit="s", format_spec=fmt_spec) 
+            fig.tight_layout()
+            path = os.path.join(output_dir, filename)
+            plt.savefig(path)
+            plot_paths[metric_key] = os.path.basename(path)
+            plt.close(fig)
+            print(f"Generated plot: {path}")
+        else:
+            print(f"Skipping {filename}: No non-zero data for {metric_key}.")
+
+    # --- Throughput Plot ---
+    throughput_values = [float(libraries_data.get(lib_name, {}).get('workflow', {}).get('throughput_msg_per_sec', 0) or 0) for lib_name in library_names]
+    if any(v > 0 for v in throughput_values):
+        fig, ax = plt.subplots(figsize=(10, 6))
+        bars = ax.bar(library_names, throughput_values, color=colors)
+        ax.set_ylabel('Messages per Second')
+        ax.set_title('Throughput (Higher is Better)')
+        ax.tick_params(axis='x', rotation=45)
+        add_labels(ax, unit=" msg/s", format_spec=".2f")
+        fig.tight_layout()
+        path = os.path.join(output_dir, 'plot_throughput.png')
         plt.savefig(path)
-        plot_paths['avg_telegram_send_time'] = os.path.basename(path)
-        plt.close()
+        plot_paths['throughput_msg_per_sec'] = os.path.basename(path)
+        plt.close(fig)
         print(f"Generated plot: {path}")
     else:
-        print("Skipping plot_avg_telegram_send_time.png: No positive send times available.")
+        print(f"Skipping plot_throughput.png: No positive data.")
 
-    # Metric 2: Successful vs Failed Runs (Stacked Bar Chart)
-    successful_runs = []
-    failed_runs = []
-    total_runs_per_lib = []
-    for lib_name in library_names:
-        workflow_data = libraries_data.get(lib_name, {}).get('workflow', {})
-        successful_runs.append(int(workflow_data.get('successful_runs', 0)))
-        failed_runs.append(int(workflow_data.get('failed_runs', 0)))
-        total_runs_per_lib.append(int(workflow_data.get('total_runs', 0)))
-    
-    # Use the num_messages from benchmark_details as the expected total if consistent
-    # This provides a stable y-axis limit if some libraries failed entirely before all attempts
+    # --- Success Rate Plot ---
+    successful_runs = [int(libraries_data.get(lib_name, {}).get('workflow', {}).get('successful_runs', 0)) for lib_name in library_names]
+    failed_runs = [int(libraries_data.get(lib_name, {}).get('workflow', {}).get('failed_runs', 0)) for lib_name in library_names]
+    total_runs_per_lib = [int(libraries_data.get(lib_name, {}).get('workflow', {}).get('total_runs', 0)) for lib_name in library_names]
     num_messages_config = report_data.get("benchmark_details", {}).get("parameters", {}).get("num_messages_per_library", sum(total_runs_per_lib)/len(total_runs_per_lib) if total_runs_per_lib else 10)
     max_total_runs = int(num_messages_config) if num_messages_config > 0 else max(total_runs_per_lib) if total_runs_per_lib else 10
 
-    if any(s > 0 or f > 0 for s, f in zip(successful_runs, failed_runs)):
+    if True: # Always generate this plot even if all fail
         ind = np.arange(len(library_names))
         width = 0.35
-        plt.figure(figsize=(12, 7))
-        p1 = plt.bar(ind, successful_runs, width, color='lightgreen', label='Successful')
-        p2 = plt.bar(ind, failed_runs, width, bottom=successful_runs, color='lightcoral', label='Failed')
-        plt.ylabel('Number of Runs')
-        plt.title(f'Workflow Run Success/Failure Rate (Total {max_total_runs} runs per library - Higher Successful is Better)')
-        plt.xticks(ind, library_names, rotation=45, ha="right")
-        plt.yticks(np.arange(0, max_total_runs + 1, max(1, max_total_runs // 10)))
-        plt.legend()
-        plt.tight_layout()
+        fig, ax = plt.subplots(figsize=(12, 7))
+        p1 = ax.bar(ind, successful_runs, width, color='lightgreen', label='Successful')
+        p2 = ax.bar(ind, failed_runs, width, bottom=successful_runs, color='lightcoral', label='Failed')
+        ax.set_ylabel('Number of Runs')
+        ax.set_title(f'Success/Failure Rate (Total {max_total_runs} runs) (Higher Successful is Better)')
+        ax.set_xticks(ind)
+        ax.set_xticklabels(library_names, rotation=45, ha="right")
+        ax.set_yticks(np.arange(0, max_total_runs + 1, max(1, max_total_runs // 10)))
+        ax.legend()
+        if any(s > 0 for s in successful_runs): ax.bar_label(p1, fmt='%g', label_type='center', fontsize=8)
+        if any(f > 0 for f in failed_runs): ax.bar_label(p2, fmt='%g', label_type='center', fontsize=8)
+        fig.tight_layout()
         path = os.path.join(output_dir, 'plot_success_failure_rate.png')
         plt.savefig(path)
-        plot_paths['success_failure_rate'] = os.path.basename(path)
-        plt.close()
+        plot_paths['success_rate'] = os.path.basename(path) 
+        plt.close(fig)
         print(f"Generated plot: {path}")
-    else:
-        print("Skipping plot_success_failure_rate.png: No successful or failed runs to plot.")
 
-    # Metric 3: Memory Increase (MB) - Placeholder data
-    memory_increases_mb = []
-    for lib_name in library_names:
-        mem_val = libraries_data.get(lib_name, {}).get('workflow', {}).get('memory_increase_mb', 0)
-        memory_increases_mb.append(float(mem_val) if mem_val is not None else 0)
+    # --- Resource Usage Plots ---
+    resource_metrics_to_plot = [
+        ("memory_increase_mb", "Memory Usage", "Memory Increase (MB)", "plot_memory_increase.png", ".2f", " MB"),
+        ("cpu_time_percent", "CPU Usage", "CPU Usage (%)", "plot_cpu_usage.png", ".2f", "%"),
+    ]
 
-    if any(m > 0 for m in memory_increases_mb): # Only plot if there's actual data > 0
-        plt.figure(figsize=(10, 6))
-        plt.bar(library_names, memory_increases_mb, color=['skyblue', 'lightcoral', 'lightgreen', 'gold', 'lightsalmon'])
-        plt.ylabel('Memory Increase (MB)')
-        plt.title('Memory Increase During Workflow per Library (Lower is Better)')
-        plt.xticks(rotation=45, ha="right")
-        plt.tight_layout()
-        path = os.path.join(output_dir, 'plot_memory_increase.png')
+    for metric_key, base_title, ylabel, filename, fmt_spec, unit in resource_metrics_to_plot:
+        values = [float(libraries_data.get(lib_name, {}).get('workflow', {}).get(metric_key, 0) or 0) for lib_name in library_names]
+        if True: # Always plot resource usage for comparison
+            fig, ax = plt.subplots(figsize=(10, 6))
+            bars = ax.bar(library_names, values, color=colors)
+            ax.set_ylabel(ylabel)
+            ax.set_title(f"{base_title} (Lower is Better)")
+            ax.tick_params(axis='x', rotation=45)
+            add_labels(ax, unit=unit, format_spec=fmt_spec) 
+            fig.tight_layout()
+            path = os.path.join(output_dir, filename)
+            plt.savefig(path)
+            plot_paths[metric_key] = os.path.basename(path)
+            plt.close(fig)
+            print(f"Generated plot: {path}")
+        # else:
+        #     print(f"Skipping {filename}: No non-zero data for {metric_key}.")
+
+    # --- Response Size Plot ---
+    avg_response_sizes = [float(libraries_data.get(lib_name, {}).get('workflow', {}).get('avg_response_size_bytes', 0) or 0) for lib_name in library_names]
+    if any(s > 0 for s in avg_response_sizes):
+        fig, ax = plt.subplots(figsize=(10, 6))
+        bars = ax.bar(library_names, avg_response_sizes, color=colors)
+        ax.set_ylabel('Avg Response Size (Bytes)')
+        ax.set_title('Average Telegram API Response Size (Lower is Better)')
+        ax.tick_params(axis='x', rotation=45)
+        add_labels(ax, unit=" B", format_spec=".1f") 
+        fig.tight_layout()
+        path = os.path.join(output_dir, 'plot_avg_response_size.png')
         plt.savefig(path)
-        plot_paths['memory_increase'] = os.path.basename(path)
-        plt.close()
+        plot_paths['avg_response_size_bytes'] = os.path.basename(path)
+        plt.close(fig)
         print(f"Generated plot: {path}")
     else:
-        print("Skipping plot_memory_increase.png: No memory increase data available.")
-
-    # Metric 4: CPU Usage Percent - Placeholder data
-    cpu_usages_percent = []
-    for lib_name in library_names:
-        cpu_val = libraries_data.get(lib_name, {}).get('workflow', {}).get('cpu_time_percent', 0)
-        cpu_usages_percent.append(float(cpu_val) if cpu_val is not None else 0)
-    
-    if any(c > 0 for c in cpu_usages_percent): # Only plot if there's actual data > 0
-        plt.figure(figsize=(10, 6))
-        plt.bar(library_names, cpu_usages_percent, color=['skyblue', 'lightcoral', 'lightgreen', 'gold', 'lightsalmon'])
-        plt.ylabel('CPU Usage (%)')
-        plt.title('CPU Usage During Workflow per Library (Lower is Better)')
-        plt.xticks(rotation=45, ha="right")
-        plt.tight_layout()
-        path = os.path.join(output_dir, 'plot_cpu_usage.png')
-        plt.savefig(path)
-        plot_paths['cpu_usage'] = os.path.basename(path)
-        plt.close()
-        print(f"Generated plot: {path}")
-    else:
-        print("Skipping plot_cpu_usage.png: No CPU usage data available.")
+         print(f"Skipping plot_avg_response_size.png: No positive data.")
 
     return plot_paths 

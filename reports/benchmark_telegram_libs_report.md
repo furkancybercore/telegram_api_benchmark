@@ -1,6 +1,6 @@
 # Telegram HTTP Library Benchmark
 ## Overview
-- **Date:** 2025-05-08 14:34:20
+- **Date:** 2025-05-08 15:29:12
 - **Number of Messages per Library:** 5
 - **Libraries Tested:** httpx, aiohttp, requests, urllib3
 - **Python Version:** 3.13.2
@@ -9,76 +9,90 @@
 ---
 
 ## Summary of Best Performers
-- **Fastest Avg. Telegram Send Time:** aiohttp (0.9607s)
+- **Fastest Avg. Total Processing Time (DB+HTTP):** urllib3 (0.5961s)
+- **Highest Throughput:** urllib3 (1.66 msg/s)
+- **Most Consistent (Lowest Std Dev - Total Time):** aiohttp (0.0239s)
 - **Highest Success Rate:** httpx (100.00%)
-- **Lowest Memory Usage (Workflow):** requests (0.08 MB)
-- **Lowest CPU Usage (Workflow):** requests (0.00%)
-
----
-
-## Detailed Results per Library
-| Library | Version | Avg TG Send (s) (Lower is Better) | Min TG Send (s) (Lower is Better) | Max TG Send (s) (Lower is Better) | Total Runs | Success Runs (Higher is Better) | Failed Runs (Lower is Better) | Success Rate (%) (Higher is Better) | CPU (%) (Lower is Better) | Memory (MB) (Lower is Better) |
-|---------|---------|-----------------------------------|-----------------------------------|-----------------------------------|------------|-------------------------------|-----------------------------|-----------------------------------|---------------------------|-----------------------------|
-| httpx | 0.27.0 | 1.1635 | 1.1350 | 1.2428 | 5 | 5 | 0 | 100.00 | 14.28 | 7.16 |
-| aiohttp | 3.9.5 | 0.9607 | 0.9511 | 0.9699 | 5 | 5 | 0 | 100.00 | 0.29 | 1.23 |
-| requests | 2.32.3 | 1.0004 | 0.9687 | 1.0379 | 5 | 5 | 0 | 100.00 | 0.00 | 0.08 |
-| urllib3 | 2.2.2 | 1.1890 | 0.4366 | 3.6117 | 5 | 5 | 0 | 100.00 | 0.48 | 0.33 |
+- **Lowest Memory Usage:** requests (0.06 MB)
+- **Lowest CPU Usage:** requests (0.19%)
 
 ---
 
 ## Performance Rankings & Visualizations
 
-### Fastest Average Telegram Send Time (Lower is Better)
-
-![Avg TG Send Time Plot](plot_avg_telegram_send_time.png)
-
-| Rank | Library | Avg Time (s) |
-|------|---------|--------------|
-| 1 | aiohttp | 0.9607 |
-| 2 | requests | 1.0004 |
-| 3 | httpx | 1.1635 |
-| 4 | urllib3 | 1.1890 |
+### Total Processing Time (DB+HTTP)
+> _Average time per message (DB read + Telegram send). Lower is better._
 
 
-### Highest Success Rate (Higher is Better)
-
-![Success/Failure Rate Plot](plot_success_failure_rate.png)
-
-| Rank | Library | Success Rate (%) |
-|------|---------|------------------|
-| 1 | httpx | 100.00 |
-| 2 | aiohttp | 100.00 |
-| 3 | requests | 100.00 |
-| 4 | urllib3 | 100.00 |
+![Total Processing Time (DB+HTTP) Plot](plot_avg_total_processing_time.png)
 
 
-## Resource Usage Rankings (Lower is Better)
+### Throughput
+> _Messages processed per second. Higher indicates better efficiency._
 
-### Lowest Memory Usage (Workflow) (Lower is Better)
+
+![Throughput Plot](plot_throughput.png)
+
+
+### Total Processing Time Consistency (Std Dev)
+> _Standard deviation of total processing time. Lower indicates more predictable performance._
+
+
+![Total Processing Time Consistency (Std Dev) Plot](plot_std_total_time.png)
+
+
+### HTTP Send Time
+> _Average time for the Telegram API request only. Lower is better._
+
+
+![HTTP Send Time Plot](plot_avg_http_send_time.png)
+
+
+### HTTP Send Time Consistency (Std Dev)
+> _Standard deviation of HTTP send time. Lower indicates less network variation._
+
+
+![HTTP Send Time Consistency (Std Dev) Plot](plot_std_http_time.png)
+
+
+### DB Read Time
+> _Average time to read from PostgreSQL. Lower is better._
+
+
+![DB Read Time Plot](plot_avg_db_read_time.png)
+
+
+### Success Rate
+> _Percentage of attempts (DB read + Telegram send) that completed successfully. Higher is better._
+
+
+![Success Rate Plot](plot_success_failure_rate.png)
+
+
+### Telegram API Response Size
+> _Average size of the response from Telegram API. Smaller indicates less overhead._
+
+
+![Telegram API Response Size Plot](plot_avg_response_size.png)
+
+
+## Resource Usage (Lower is Better)
+
+### Memory Usage
+> _Increase in Python process RAM from start to end of the benchmark. Lower is better._
+
 
 ![Memory Usage Plot](plot_memory_increase.png)
 
-| Rank | Library | Memory Increase (MB) |
-|------|---------|----------------------|
-| 1 | requests | 0.08 |
-| 2 | urllib3 | 0.33 |
-| 3 | aiohttp | 1.23 |
-| 4 | httpx | 7.16 |
 
+### CPU Usage
+> _Average CPU percentage used by the Python process during the benchmark. Lower is better._
 
-### Lowest CPU Usage (Workflow) (Lower is Better)
 
 ![CPU Usage Plot](plot_cpu_usage.png)
-
-| Rank | Library | CPU Usage (%) |
-|------|---------|---------------|
-| 1 | requests | 0.00 |
-| 2 | aiohttp | 0.29 |
-| 3 | urllib3 | 0.48 |
-| 4 | httpx | 14.28 |
 
 
 ---
 
 ## Conclusion
-This benchmark measures the performance of different Python HTTP client libraries for sending messages to the Telegram API. The metrics focus on the Telegram message send time, success rates, and resource utilization.
+This benchmark measures the performance of different Python HTTP client libraries for sending messages to the Telegram API. The metrics focus on database read time, Telegram message send time, total processing time, throughput, success rates, latency consistency (standard deviation), and resource utilization.

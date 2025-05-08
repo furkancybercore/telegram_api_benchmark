@@ -6,5 +6,7 @@ python-dotenv==1.0.1
 matplotlib==3.9.0
 numpy==1.26.4
 psutil==5.9.8 # For CPU/memory tracking
+psycopg2-binary==2.9.9 # For synchronous PostgreSQL access
+asyncpg==0.29.0       # For asynchronous PostgreSQL access
 # Add psutil if you plan to implement detailed CPU/memory tracking per library
 # psutil==5.9.8 

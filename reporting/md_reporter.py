@@ -36,86 +36,60 @@ def generate_report(report_data, output_dir, filename):
 
     # --- Summary of Best Performers ---
     md_content.append("## Summary of Best Performers")
-    md_content.append(f"- **Fastest Avg. Telegram Send Time:** {summary_overall.get('fastest_avg_telegram_send_time', 'N/A')} ({summary_overall.get('fastest_avg_telegram_send_time_s', 0):.4f}s)")
-    # Add other "best performers" if available in summary_overall, e.g., workflow time
+    md_content.append(f"- **Fastest Avg. Total Processing Time (DB+HTTP):** {summary_overall.get('fastest_avg_total_processing_time_library', 'N/A')} ({summary_overall.get('fastest_avg_total_processing_time_s', 0):.4f}s)")
+    md_content.append(f"- **Highest Throughput:** {summary_overall.get('highest_throughput_library', 'N/A')} ({summary_overall.get('highest_throughput_msg_per_sec', 0):.2f} msg/s)")
+    md_content.append(f"- **Most Consistent (Lowest Std Dev - Total Time):** {summary_overall.get('most_consistent_library_std_dev', 'N/A')} ({summary_overall.get('lowest_std_dev_total_time_s', 0):.4f}s)")
     md_content.append(f"- **Highest Success Rate:** {summary_overall.get('highest_success_rate_library', 'N/A')} ({summary_overall.get('highest_success_rate_percent', 0):.2f}%)")
-    md_content.append(f"- **Lowest Memory Usage (Workflow):** {summary_overall.get('lowest_memory_library', 'N/A')} ({summary_overall.get('lowest_memory_increase_mb', 0):.2f} MB)")
-    md_content.append(f"- **Lowest CPU Usage (Workflow):** {summary_overall.get('lowest_cpu_library', 'N/A')} ({summary_overall.get('lowest_cpu_time_percent', 0):.2f}%)")
+    md_content.append(f"- **Lowest Memory Usage:** {summary_overall.get('lowest_memory_library', 'N/A')} ({summary_overall.get('lowest_memory_increase_mb', 0):.2f} MB)")
+    md_content.append(f"- **Lowest CPU Usage:** {summary_overall.get('lowest_cpu_library', 'N/A')} ({summary_overall.get('lowest_cpu_time_percent', 0):.2f}%)")
     md_content.append("\n---\n")
 
-    # --- Detailed Results per Library ---
-    md_content.append("## Detailed Results per Library")
-    md_content.append("| Library | Version | Avg TG Send (s) (Lower is Better) | Min TG Send (s) (Lower is Better) | Max TG Send (s) (Lower is Better) | Total Runs | Success Runs (Higher is Better) | Failed Runs (Lower is Better) | Success Rate (%) (Higher is Better) | CPU (%) (Lower is Better) | Memory (MB) (Lower is Better) |")
-    md_content.append("|---------|---------|-----------------------------------|-----------------------------------|-----------------------------------|------------|-------------------------------|-----------------------------|-----------------------------------|---------------------------|-----------------------------|")
-    for lib_name, lib_data in libraries.items():
-        workflow_metrics = lib_data.get("workflow", {})
-        version = lib_data.get("version", "N/A")
-        md_content.append(
-            f"| {lib_name} | {version} | "
-            f"{workflow_metrics.get('avg_telegram_send_time_s', 0):.4f} | "
-            f"{workflow_metrics.get('min_telegram_send_time_s', 0):.4f} | "
-            f"{workflow_metrics.get('max_telegram_send_time_s', 0):.4f} | "
-            f"{workflow_metrics.get('total_runs', 0)} | "
-            f"{workflow_metrics.get('successful_runs', 0)} | "
-            f"{workflow_metrics.get('failed_runs', 0)} | "
-            f"{workflow_metrics.get('success_rate_percent', 0):.2f} | "
-            f"{workflow_metrics.get('cpu_time_percent', 0):.2f} | "
-            f"{workflow_metrics.get('memory_increase_mb', 0):.2f} |"
-        )
-    md_content.append("\n---\n")
-
-    # --- Performance Rankings and Plots ---
+    # --- Performance Rankings & Visualizations ---
     md_content.append("## Performance Rankings & Visualizations")
     rankings = summary_overall.get("rankings", {})
 
-    if rankings.get("avg_telegram_send_time"):
-        md_content.append("\n### Fastest Average Telegram Send Time (Lower is Better)")
-        if plot_filenames.get('avg_telegram_send_time'):
-             md_content.append(f"\n![Avg TG Send Time Plot]({plot_filenames['avg_telegram_send_time']})\n")
-        md_content.append("| Rank | Library | Avg Time (s) |")
-        md_content.append("|------|---------|--------------|")
-        for i, (lib, time_val) in enumerate(rankings["avg_telegram_send_time"]):
-            md_content.append(f"| {i+1} | {lib} | {time_val:.4f} |")
-        md_content.append("")
-            
-    if rankings.get("success_rate"):
-        md_content.append("\n### Highest Success Rate (Higher is Better)")
-        if plot_filenames.get('success_failure_rate'):
-             md_content.append(f"\n![Success/Failure Rate Plot]({plot_filenames['success_failure_rate']})\n")
-        md_content.append("| Rank | Library | Success Rate (%) |")
-        md_content.append("|------|---------|------------------|")
-        for i, (lib, rate) in enumerate(rankings["success_rate"]):
-            md_content.append(f"| {i+1} | {lib} | {rate:.2f} |")
-        md_content.append("")
+    # Helper function now only adds title, description, and plot
+    def add_ranking_section(metric_key, title, description):
+        plot_filename = plot_filenames.get(metric_key)
+        # Only add section if plot exists
+        if plot_filename:
+            md_content.append(f"\n### {title}")
+            md_content.append(f"> _{description}_\n") # Add description
+            md_content.append(f"\n![{title} Plot]({plot_filename})\n")
+        else:
+            # Optionally mention if plot is missing for a key metric
+            print(f"Note: Plot not generated for metric '{metric_key}', skipping section.")
+            pass # Don't add the section if no plot
 
-    # --- Resource Usage Rankings (Placeholders for now) ---
-    md_content.append("\n## Resource Usage Rankings (Lower is Better)")
-    if rankings.get("memory_usage") or plot_filenames.get('memory_increase'): # Show section if plot exists or data structure exists
-        md_content.append("\n### Lowest Memory Usage (Workflow) (Lower is Better)")
-        if plot_filenames.get('memory_increase'):
-             md_content.append(f"\n![Memory Usage Plot]({plot_filenames['memory_increase']})\n")
-        if rankings.get("memory_usage"):
-            md_content.append("| Rank | Library | Memory Increase (MB) |")
-            md_content.append("|------|---------|----------------------|")
-            for i, (lib, mem) in enumerate(rankings["memory_usage"]):
-                md_content.append(f"| {i+1} | {lib} | {mem:.2f} |")
-        md_content.append("")
+    # Call helper with descriptions and simplified titles
+    add_ranking_section("avg_total_processing_time_s", "Total Processing Time (DB+HTTP)", 
+                      "Average time per message (DB read + Telegram send). Lower is better.")
+    add_ranking_section("throughput_msg_per_sec", "Throughput", 
+                      "Messages processed per second. Higher indicates better efficiency.")
+    add_ranking_section("std_total_processing_time_s", "Total Processing Time Consistency (Std Dev)",
+                      "Standard deviation of total processing time. Lower indicates more predictable performance.")
+    add_ranking_section("avg_http_send_time_s", "HTTP Send Time",
+                      "Average time for the Telegram API request only. Lower is better.")
+    add_ranking_section("std_http_send_time_s", "HTTP Send Time Consistency (Std Dev)",
+                      "Standard deviation of HTTP send time. Lower indicates less network variation.")
+    add_ranking_section("avg_db_read_time_s", "DB Read Time",
+                      "Average time to read from PostgreSQL. Lower is better.")
+    # Use the plot key for success rate here
+    add_ranking_section("success_rate", "Success Rate", 
+                      "Percentage of attempts (DB read + Telegram send) that completed successfully. Higher is better.")
+    add_ranking_section("avg_response_size_bytes", "Telegram API Response Size",
+                      "Average size of the response from Telegram API. Smaller indicates less overhead.")
 
-    if rankings.get("cpu_usage") or plot_filenames.get('cpu_usage'):
-        md_content.append("\n### Lowest CPU Usage (Workflow) (Lower is Better)")
-        if plot_filenames.get('cpu_usage'):
-             md_content.append(f"\n![CPU Usage Plot]({plot_filenames['cpu_usage']})\n")
-        if rankings.get("cpu_usage"):
-            md_content.append("| Rank | Library | CPU Usage (%) |")
-            md_content.append("|------|---------|---------------|")
-            for i, (lib, cpu) in enumerate(rankings["cpu_usage"]):
-                md_content.append(f"| {i+1} | {lib} | {cpu:.2f} |")
-        md_content.append("")
+    md_content.append("\n## Resource Usage (Lower is Better)")
+    add_ranking_section("memory_increase_mb", "Memory Usage",
+                      "Increase in Python process RAM from start to end of the benchmark. Lower is better.")
+    add_ranking_section("cpu_time_percent", "CPU Usage",
+                      "Average CPU percentage used by the Python process during the benchmark. Lower is better.")
     
     md_content.append("\n---\n")
     md_content.append("## Conclusion")
     md_content.append("This benchmark measures the performance of different Python HTTP client libraries for sending messages to the Telegram API. "
-                      "The metrics focus on the Telegram message send time, success rates, and resource utilization.")
+                      "The metrics focus on database read time, Telegram message send time, total processing time, throughput, success rates, latency consistency (standard deviation), and resource utilization.")
 
     try:
         with open(report_path, 'w') as f:

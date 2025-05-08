@@ -2,27 +2,34 @@ import requests
 from .base_sender import BaseSender
 
 class RequestsSender(BaseSender):
-    def send_message_sync(self, text_payload, message_params):
+    def send_message_sync(self, db_conn, text_payload, message_params):
         data = {
             'chat_id': self.chat_id,
             'text': text_payload,
             **message_params
         }
+        response_size_bytes = 0
+        response_text = ""
         try:
-            response = requests.post(self.api_url, data=data, timeout=10) # 10s timeout
+            response = requests.post(self.api_url, data=data, timeout=10) 
+            response_size_bytes = len(response.content) # Get size from content bytes
+            response_text = response.text # Access text after size
             response.raise_for_status() # Raise an HTTPError for bad responses (4xx or 5xx)
-            return response.status_code, response.text[:100], True
+            return response.status_code, response_text, response_size_bytes, True
         except requests.exceptions.HTTPError as e:
-            # Error from server (4xx, 5xx)
-            return e.response.status_code, e.response.text[:100], False
+            # Ensure response text/size are captured even on HTTP error
+            if e.response is not None:
+                 response_size_bytes = len(e.response.content)
+                 response_text = e.response.text
+                 return e.response.status_code, response_text, response_size_bytes, False
+            else:
+                 return None, str(e), 0, False # No response object available
         except requests.exceptions.RequestException as e:
-            # Other request errors (timeout, connection error, etc.)
-            return None, str(e), False
+            return None, str(e), 0, False
         except Exception as e:
-            return None, str(e), False
+            return None, str(e), 0, False
 
-    async def send_message_async(self, text_payload, message_params):
-        # requests is a synchronous library
+    async def send_message_async(self, db_conn, text_payload, message_params):
         raise NotImplementedError("requests is a synchronous library. Use send_message_sync.")
 
     def get_sender_type(self):
