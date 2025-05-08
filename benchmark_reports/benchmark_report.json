@@ -1,7 +1,7 @@
 {
   "benchmark_details": {
     "project_name": "Telegram HTTP Library Benchmark",
-    "timestamp": "2025-05-08T16:48:38.538595+00:00",
+    "timestamp": "2025-05-08T17:00:21.774788+00:00",
     "python_version": "3.13.2",
     "platform": "Windows-11-10.0.26100-SP0",
     "libraries_versions": {
@@ -19,7 +19,7 @@
       "database_backend": "PostgreSQL",
       "db_host": "localhost"
     },
-    "report_generated_at": "2025-05-08T16:48:38.561736+00:00"
+    "report_generated_at": "2025-05-08T17:00:21.798508+00:00"
   },
   "libraries": {
     "httpx": {
@@ -29,47 +29,47 @@
       "run_details": [
         {
           "status_code": 200,
-          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":664,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":712,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
           "response_size_bytes": 273,
-          "db_read_time_ms": 1.79,
-          "http_request_time_ms": 962.13,
-          "total_processing_time_ms": 963.93,
+          "db_read_time_ms": 2.0,
+          "http_request_time_ms": 959.32,
+          "total_processing_time_ms": 961.31,
           "success": true,
           "error_message": null
         },
         {
           "status_code": 200,
-          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":665,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":713,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
           "response_size_bytes": 273,
-          "db_read_time_ms": 0.59,
-          "http_request_time_ms": 477.36,
-          "total_processing_time_ms": 477.95,
+          "db_read_time_ms": 0.62,
+          "http_request_time_ms": 455.31,
+          "total_processing_time_ms": 455.93,
           "success": true,
           "error_message": null
         }
       ],
       "workflow": {
-        "avg_db_read_time_s": 0.00119,
-        "p95_db_read_time_s": 0.00173,
-        "p99_db_read_time_s": 0.00178,
-        "std_db_read_time_s": 0.0006,
-        "avg_http_send_time_s": 0.71974,
-        "p95_http_send_time_s": 0.93789,
-        "p99_http_send_time_s": 0.95728,
-        "std_http_send_time_s": 0.24238,
-        "avg_total_processing_time_s": 0.72094,
-        "p95_total_processing_time_s": 0.93963,
-        "p99_total_processing_time_s": 0.95907,
-        "std_total_processing_time_s": 0.24299,
+        "avg_db_read_time_s": 0.00131,
+        "p95_db_read_time_s": 0.00193,
+        "p99_db_read_time_s": 0.00199,
+        "std_db_read_time_s": 0.00069,
+        "avg_http_send_time_s": 0.70732,
+        "p95_http_send_time_s": 0.93412,
+        "p99_http_send_time_s": 0.95428,
+        "std_http_send_time_s": 0.25201,
+        "avg_total_processing_time_s": 0.70862,
+        "p95_total_processing_time_s": 0.93604,
+        "p99_total_processing_time_s": 0.95626,
+        "std_total_processing_time_s": 0.25269,
         "avg_response_size_bytes": 273.0,
-        "throughput_msg_per_sec": 1.21,
-        "total_benchmark_duration_s": 1.6495,
+        "throughput_msg_per_sec": 1.23,
+        "total_benchmark_duration_s": 1.6291,
         "successful_runs": 2,
         "failed_runs": 0,
         "total_runs": 2,
         "success_rate_percent": 100.0,
-        "cpu_time_percent": 11.37,
-        "memory_increase_mb": 3.0
+        "cpu_time_percent": 11.51,
+        "memory_increase_mb": 3.04
       }
     },
     "aiohttp": {
@@ -79,47 +79,47 @@
       "run_details": [
         {
           "status_code": 200,
-          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":666,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":714,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
           "response_size_bytes": 275,
-          "db_read_time_ms": 0.45,
-          "http_request_time_ms": 1135.41,
-          "total_processing_time_ms": 1135.85,
+          "db_read_time_ms": 0.5,
+          "http_request_time_ms": 1018.19,
+          "total_processing_time_ms": 1018.68,
           "success": true,
           "error_message": null
         },
         {
           "status_code": 200,
-          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":667,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":715,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
           "response_size_bytes": 275,
-          "db_read_time_ms": 0.55,
-          "http_request_time_ms": 458.69,
-          "total_processing_time_ms": 459.25,
+          "db_read_time_ms": 0.58,
+          "http_request_time_ms": 441.23,
+          "total_processing_time_ms": 441.8,
           "success": true,
           "error_message": null
         }
       ],
       "workflow": {
-        "avg_db_read_time_s": 0.0005,
-        "p95_db_read_time_s": 0.00054,
-        "p99_db_read_time_s": 0.00055,
-        "std_db_read_time_s": 5e-05,
-        "avg_http_send_time_s": 0.79705,
-        "p95_http_send_time_s": 1.10157,
-        "p99_http_send_time_s": 1.12864,
-        "std_http_send_time_s": 0.33836,
-        "avg_total_processing_time_s": 0.79755,
-        "p95_total_processing_time_s": 1.10202,
-        "p99_total_processing_time_s": 1.12908,
-        "std_total_processing_time_s": 0.3383,
+        "avg_db_read_time_s": 0.00054,
+        "p95_db_read_time_s": 0.00058,
+        "p99_db_read_time_s": 0.00058,
+        "std_db_read_time_s": 4e-05,
+        "avg_http_send_time_s": 0.72971,
+        "p95_http_send_time_s": 0.98934,
+        "p99_http_send_time_s": 1.01242,
+        "std_http_send_time_s": 0.28848,
+        "avg_total_processing_time_s": 0.73024,
+        "p95_total_processing_time_s": 0.98984,
+        "p99_total_processing_time_s": 1.01291,
+        "std_total_processing_time_s": 0.28844,
         "avg_response_size_bytes": 275.0,
-        "throughput_msg_per_sec": 1.25,
-        "total_benchmark_duration_s": 1.5956,
+        "throughput_msg_per_sec": 1.37,
+        "total_benchmark_duration_s": 1.461,
         "successful_runs": 2,
         "failed_runs": 0,
         "total_runs": 2,
         "success_rate_percent": 100.0,
-        "cpu_time_percent": 1.96,
-        "memory_increase_mb": 1.21
+        "cpu_time_percent": 1.07,
+        "memory_increase_mb": 1.22
       }
     },
     "requests": {
@@ -128,48 +128,48 @@
       "type": "sync",
       "run_details": [
         {
-          "status_code": null,
-          "response_text_snippet": "'RequestsSender' object has no attribute 'api_url'",
-          "response_size_bytes": 0,
-          "db_read_time_ms": 1.17,
-          "http_request_time_ms": 0.16,
-          "total_processing_time_ms": 1.34,
-          "success": false,
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":716,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 276,
+          "db_read_time_ms": 1.06,
+          "http_request_time_ms": 948.91,
+          "total_processing_time_ms": 949.97,
+          "success": true,
           "error_message": null
         },
         {
-          "status_code": null,
-          "response_text_snippet": "'RequestsSender' object has no attribute 'api_url'",
-          "response_size_bytes": 0,
-          "db_read_time_ms": 0.12,
-          "http_request_time_ms": 0.07,
-          "total_processing_time_ms": 0.19,
-          "success": false,
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":717,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 276,
+          "db_read_time_ms": 0.3,
+          "http_request_time_ms": 4183.74,
+          "total_processing_time_ms": 4184.04,
+          "success": true,
           "error_message": null
         }
       ],
       "workflow": {
-        "avg_db_read_time_s": 0,
-        "p95_db_read_time_s": 0,
-        "p99_db_read_time_s": 0,
-        "std_db_read_time_s": 0,
-        "avg_http_send_time_s": 0,
-        "p95_http_send_time_s": 0,
-        "p99_http_send_time_s": 0,
-        "std_http_send_time_s": 0,
-        "avg_total_processing_time_s": 0,
-        "p95_total_processing_time_s": 0,
-        "p99_total_processing_time_s": 0,
-        "std_total_processing_time_s": 0,
-        "avg_response_size_bytes": 0,
-        "throughput_msg_per_sec": 14.16,
-        "total_benchmark_duration_s": 0.1412,
-        "successful_runs": 0,
-        "failed_runs": 2,
+        "avg_db_read_time_s": 0.00068,
+        "p95_db_read_time_s": 0.00102,
+        "p99_db_read_time_s": 0.00105,
+        "std_db_read_time_s": 0.00038,
+        "avg_http_send_time_s": 2.56632,
+        "p95_http_send_time_s": 4.022,
+        "p99_http_send_time_s": 4.15139,
+        "std_http_send_time_s": 1.61742,
+        "avg_total_processing_time_s": 2.567,
+        "p95_total_processing_time_s": 4.02234,
+        "p99_total_processing_time_s": 4.1517,
+        "std_total_processing_time_s": 1.61703,
+        "avg_response_size_bytes": 276.0,
+        "throughput_msg_per_sec": 0.38,
+        "total_benchmark_duration_s": 5.2783,
+        "successful_runs": 2,
+        "failed_runs": 0,
         "total_runs": 2,
-        "success_rate_percent": 0.0,
-        "cpu_time_percent": 0.0,
-        "memory_increase_mb": 0.01
+        "success_rate_percent": 100.0,
+        "cpu_time_percent": 0.89,
+        "memory_increase_mb": 0.17
       }
     },
     "urllib3": {
@@ -179,47 +179,47 @@
       "run_details": [
         {
           "status_code": 200,
-          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":668,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":718,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
           "response_size_bytes": 275,
-          "db_read_time_ms": 1.04,
-          "http_request_time_ms": 1009.57,
-          "total_processing_time_ms": 1010.61,
+          "db_read_time_ms": 1.13,
+          "http_request_time_ms": 986.88,
+          "total_processing_time_ms": 988.01,
           "success": true,
           "error_message": null
         },
         {
           "status_code": 200,
-          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":669,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":719,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
           "response_size_bytes": 275,
-          "db_read_time_ms": 0.29,
-          "http_request_time_ms": 3718.98,
-          "total_processing_time_ms": 3719.27,
+          "db_read_time_ms": 0.28,
+          "http_request_time_ms": 457.15,
+          "total_processing_time_ms": 457.43,
           "success": true,
           "error_message": null
         }
       ],
       "workflow": {
-        "avg_db_read_time_s": 0.00067,
-        "p95_db_read_time_s": 0.001,
-        "p99_db_read_time_s": 0.00103,
-        "std_db_read_time_s": 0.00038,
-        "avg_http_send_time_s": 2.36428,
-        "p95_http_send_time_s": 3.58351,
-        "p99_http_send_time_s": 3.69189,
-        "std_http_send_time_s": 1.3547,
-        "avg_total_processing_time_s": 2.36494,
-        "p95_total_processing_time_s": 3.58384,
-        "p99_total_processing_time_s": 3.69218,
-        "std_total_processing_time_s": 1.35433,
+        "avg_db_read_time_s": 0.00071,
+        "p95_db_read_time_s": 0.00109,
+        "p99_db_read_time_s": 0.00112,
+        "std_db_read_time_s": 0.00042,
+        "avg_http_send_time_s": 0.72201,
+        "p95_http_send_time_s": 0.96039,
+        "p99_http_send_time_s": 0.98158,
+        "std_http_send_time_s": 0.26486,
+        "avg_total_processing_time_s": 0.72272,
+        "p95_total_processing_time_s": 0.96148,
+        "p99_total_processing_time_s": 0.9827,
+        "std_total_processing_time_s": 0.26529,
         "avg_response_size_bytes": 275.0,
-        "throughput_msg_per_sec": 0.42,
-        "total_benchmark_duration_s": 4.7571,
+        "throughput_msg_per_sec": 1.27,
+        "total_benchmark_duration_s": 1.5754,
         "successful_runs": 2,
         "failed_runs": 0,
         "total_runs": 2,
         "success_rate_percent": 100.0,
-        "cpu_time_percent": 0.66,
-        "memory_increase_mb": 0.32
+        "cpu_time_percent": 0.99,
+        "memory_increase_mb": 0.17
       }
     },
     "uplink": {
@@ -228,48 +228,48 @@
       "type": "async",
       "run_details": [
         {
-          "status_code": 400,
-          "response_text_snippet": "{\"ok\":false,\"error_code\":400,\"description\":\"Bad Request: message text is empty\"}",
-          "response_size_bytes": 80,
-          "db_read_time_ms": 0.63,
-          "http_request_time_ms": 761.49,
-          "total_processing_time_ms": 762.12,
-          "success": false,
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":720,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 274,
+          "db_read_time_ms": 0.7,
+          "http_request_time_ms": 967.12,
+          "total_processing_time_ms": 967.82,
+          "success": true,
           "error_message": null
         },
         {
-          "status_code": 400,
-          "response_text_snippet": "{\"ok\":false,\"error_code\":400,\"description\":\"Bad Request: message text is empty\"}",
-          "response_size_bytes": 80,
-          "db_read_time_ms": 0.73,
-          "http_request_time_ms": 257.09,
-          "total_processing_time_ms": 257.82,
-          "success": false,
+          "status_code": 200,
+          "response_text_snippet": "{\"ok\":true,\"result\":{\"message_id\":721,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_size_bytes": 274,
+          "db_read_time_ms": 0.67,
+          "http_request_time_ms": 484.33,
+          "total_processing_time_ms": 485.0,
+          "success": true,
           "error_message": null
         }
       ],
       "workflow": {
-        "avg_db_read_time_s": 0,
-        "p95_db_read_time_s": 0,
-        "p99_db_read_time_s": 0,
-        "std_db_read_time_s": 0,
-        "avg_http_send_time_s": 0,
-        "p95_http_send_time_s": 0,
-        "p99_http_send_time_s": 0,
-        "std_http_send_time_s": 0,
-        "avg_total_processing_time_s": 0,
-        "p95_total_processing_time_s": 0,
-        "p99_total_processing_time_s": 0,
-        "std_total_processing_time_s": 0,
-        "avg_response_size_bytes": 0,
-        "throughput_msg_per_sec": 1.96,
-        "total_benchmark_duration_s": 1.0207,
-        "successful_runs": 0,
-        "failed_runs": 2,
+        "avg_db_read_time_s": 0.00069,
+        "p95_db_read_time_s": 0.0007,
+        "p99_db_read_time_s": 0.0007,
+        "std_db_read_time_s": 1e-05,
+        "avg_http_send_time_s": 0.72573,
+        "p95_http_send_time_s": 0.94298,
+        "p99_http_send_time_s": 0.96229,
+        "std_http_send_time_s": 0.2414,
+        "avg_total_processing_time_s": 0.72641,
+        "p95_total_processing_time_s": 0.94368,
+        "p99_total_processing_time_s": 0.96299,
+        "std_total_processing_time_s": 0.24141,
+        "avg_response_size_bytes": 274.0,
+        "throughput_msg_per_sec": 1.38,
+        "total_benchmark_duration_s": 1.4537,
+        "successful_runs": 2,
+        "failed_runs": 0,
         "total_runs": 2,
-        "success_rate_percent": 0.0,
-        "cpu_time_percent": 1.53,
-        "memory_increase_mb": 0.03
+        "success_rate_percent": 100.0,
+        "cpu_time_percent": 0.0,
+        "memory_increase_mb": 0.04
       }
     },
     "ptb": {
@@ -281,9 +281,9 @@
           "status_code": 200,
           "response_text_snippet": "{\"channel_chat_created\": false, \"delete_chat_photo\": false, \"group_chat_created\": false, \"supergroup",
           "response_size_bytes": 393,
-          "db_read_time_ms": 0.62,
-          "http_request_time_ms": 466.36,
-          "total_processing_time_ms": 466.98,
+          "db_read_time_ms": 0.65,
+          "http_request_time_ms": 3634.9,
+          "total_processing_time_ms": 3635.56,
           "success": true,
           "error_message": null
         },
@@ -291,35 +291,35 @@
           "status_code": 200,
           "response_text_snippet": "{\"channel_chat_created\": false, \"delete_chat_photo\": false, \"group_chat_created\": false, \"supergroup",
           "response_size_bytes": 393,
-          "db_read_time_ms": 0.59,
-          "http_request_time_ms": 512.48,
-          "total_processing_time_ms": 513.07,
+          "db_read_time_ms": 0.61,
+          "http_request_time_ms": 457.72,
+          "total_processing_time_ms": 458.33,
           "success": true,
           "error_message": null
         }
       ],
       "workflow": {
-        "avg_db_read_time_s": 0.0006,
-        "p95_db_read_time_s": 0.00062,
-        "p99_db_read_time_s": 0.00062,
+        "avg_db_read_time_s": 0.00063,
+        "p95_db_read_time_s": 0.00065,
+        "p99_db_read_time_s": 0.00065,
         "std_db_read_time_s": 2e-05,
-        "avg_http_send_time_s": 0.48942,
-        "p95_http_send_time_s": 0.51017,
-        "p99_http_send_time_s": 0.51202,
-        "std_http_send_time_s": 0.02306,
-        "avg_total_processing_time_s": 0.49003,
-        "p95_total_processing_time_s": 0.51077,
-        "p99_total_processing_time_s": 0.51261,
-        "std_total_processing_time_s": 0.02305,
+        "avg_http_send_time_s": 2.04631,
+        "p95_http_send_time_s": 3.47604,
+        "p99_http_send_time_s": 3.60313,
+        "std_http_send_time_s": 1.58859,
+        "avg_total_processing_time_s": 2.04695,
+        "p95_total_processing_time_s": 3.4767,
+        "p99_total_processing_time_s": 3.60379,
+        "std_total_processing_time_s": 1.58862,
         "avg_response_size_bytes": 393.0,
-        "throughput_msg_per_sec": 0.97,
-        "total_benchmark_duration_s": 2.0676,
+        "throughput_msg_per_sec": 0.38,
+        "total_benchmark_duration_s": 5.1963,
         "successful_runs": 2,
         "failed_runs": 0,
         "total_runs": 2,
         "success_rate_percent": 100.0,
-        "cpu_time_percent": 16.63,
-        "memory_increase_mb": 1.4
+        "cpu_time_percent": 6.62,
+        "memory_increase_mb": 1.28
       }
     },
     "pytelegrambotapi": {
@@ -329,174 +329,214 @@
       "run_details": [
         {
           "status_code": 200,
-          "response_text_snippet": "{\"message_id\": 672, \"from\": {\"id\": 7944633759, \"is_bot\": true, \"first_name\": \"Rock-Paper-Scissors\", ",
+          "response_text_snippet": "{\"message_id\": 724, \"from\": {\"id\": 7944633759, \"is_bot\": true, \"first_name\": \"Rock-Paper-Scissors\", ",
           "response_size_bytes": 284,
           "db_read_time_ms": 0.49,
-          "http_request_time_ms": 1010.55,
-          "total_processing_time_ms": 1011.04,
+          "http_request_time_ms": 955.28,
+          "total_processing_time_ms": 955.77,
           "success": true,
           "error_message": null
         },
         {
           "status_code": 200,
-          "response_text_snippet": "{\"message_id\": 673, \"from\": {\"id\": 7944633759, \"is_bot\": true, \"first_name\": \"Rock-Paper-Scissors\", ",
+          "response_text_snippet": "{\"message_id\": 725, \"from\": {\"id\": 7944633759, \"is_bot\": true, \"first_name\": \"Rock-Paper-Scissors\", ",
           "response_size_bytes": 284,
-          "db_read_time_ms": 0.73,
-          "http_request_time_ms": 450.76,
-          "total_processing_time_ms": 451.48,
+          "db_read_time_ms": 0.74,
+          "http_request_time_ms": 441.2,
+          "total_processing_time_ms": 441.94,
           "success": true,
           "error_message": null
         }
       ],
       "workflow": {
         "avg_db_read_time_s": 0.00061,
-        "p95_db_read_time_s": 0.00072,
-        "p99_db_read_time_s": 0.00073,
+        "p95_db_read_time_s": 0.00073,
+        "p99_db_read_time_s": 0.00074,
         "std_db_read_time_s": 0.00012,
-        "avg_http_send_time_s": 0.73065,
-        "p95_http_send_time_s": 0.98256,
-        "p99_http_send_time_s": 1.00495,
-        "std_http_send_time_s": 0.2799,
-        "avg_total_processing_time_s": 0.73126,
-        "p95_total_processing_time_s": 0.98306,
-        "p99_total_processing_time_s": 1.00544,
-        "std_total_processing_time_s": 0.27978,
+        "avg_http_send_time_s": 0.69824,
+        "p95_http_send_time_s": 0.92958,
+        "p99_http_send_time_s": 0.95014,
+        "std_http_send_time_s": 0.25704,
+        "avg_total_processing_time_s": 0.69886,
+        "p95_total_processing_time_s": 0.93008,
+        "p99_total_processing_time_s": 0.95063,
+        "std_total_processing_time_s": 0.25691,
         "avg_response_size_bytes": 284.0,
-        "throughput_msg_per_sec": 1.37,
-        "total_benchmark_duration_s": 1.463,
+        "throughput_msg_per_sec": 1.43,
+        "total_benchmark_duration_s": 1.3981,
         "successful_runs": 2,
         "failed_runs": 0,
         "total_runs": 2,
         "success_rate_percent": 100.0,
-        "cpu_time_percent": 1.07,
-        "memory_increase_mb": 0.28
+        "cpu_time_percent": 1.12,
+        "memory_increase_mb": 0.3
       }
     }
   },
   "overall_summary": {
-    "fastest_avg_total_processing_time_library": "ptb",
-    "fastest_avg_total_processing_time_s": 0.49003,
-    "slowest_avg_total_processing_time_library": "urllib3",
-    "slowest_avg_total_processing_time_s": 2.36494,
+    "fastest_avg_total_processing_time_library": "pytelegrambotapi",
+    "fastest_avg_total_processing_time_s": 0.69886,
+    "slowest_avg_total_processing_time_library": "requests",
+    "slowest_avg_total_processing_time_s": 2.567,
     "highest_throughput_library": "pytelegrambotapi",
-    "highest_throughput_msg_per_sec": 1.37,
-    "most_consistent_library_std_dev": "ptb",
-    "lowest_std_dev_total_time_s": 0.02305,
+    "highest_throughput_msg_per_sec": 1.43,
+    "most_consistent_library_std_dev": "uplink",
+    "lowest_std_dev_total_time_s": 0.24141,
     "highest_success_rate_library": "httpx",
     "highest_success_rate_percent": 100.0,
-    "lowest_memory_library": "requests",
-    "lowest_memory_increase_mb": 0.01,
-    "lowest_cpu_library": "requests",
+    "lowest_memory_library": "uplink",
+    "lowest_memory_increase_mb": 0.04,
+    "lowest_cpu_library": "uplink",
     "lowest_cpu_time_percent": 0.0,
     "rankings": {
       "avg_total_processing_time_s": [
         [
-          "ptb",
-          0.49003
+          "pytelegrambotapi",
+          0.69886
         ],
         [
           "httpx",
-          0.72094
-        ],
-        [
-          "pytelegrambotapi",
-          0.73126
-        ],
-        [
-          "aiohttp",
-          0.79755
+          0.70862
         ],
         [
           "urllib3",
-          2.36494
+          0.72272
+        ],
+        [
+          "uplink",
+          0.72641
+        ],
+        [
+          "aiohttp",
+          0.73024
+        ],
+        [
+          "ptb",
+          2.04695
+        ],
+        [
+          "requests",
+          2.567
         ]
       ],
       "throughput_msg_per_sec": [
         [
           "pytelegrambotapi",
-          1.37
+          1.43
+        ],
+        [
+          "uplink",
+          1.38
         ],
         [
           "aiohttp",
-          1.25
-        ],
-        [
-          "httpx",
-          1.21
-        ],
-        [
-          "ptb",
-          0.97
+          1.37
         ],
         [
           "urllib3",
-          0.42
+          1.27
+        ],
+        [
+          "httpx",
+          1.23
+        ],
+        [
+          "requests",
+          0.38
+        ],
+        [
+          "ptb",
+          0.38
         ]
       ],
       "std_total_processing_time_s": [
         [
-          "ptb",
-          0.02305
+          "uplink",
+          0.24141
         ],
         [
           "httpx",
-          0.24299
+          0.25269
         ],
         [
           "pytelegrambotapi",
-          0.27978
-        ],
-        [
-          "aiohttp",
-          0.3383
+          0.25691
         ],
         [
           "urllib3",
-          1.35433
+          0.26529
+        ],
+        [
+          "aiohttp",
+          0.28844
+        ],
+        [
+          "ptb",
+          1.58862
+        ],
+        [
+          "requests",
+          1.61703
         ]
       ],
       "avg_db_read_time_s": [
         [
           "aiohttp",
-          0.0005
-        ],
-        [
-          "ptb",
-          0.0006
+          0.00054
         ],
         [
           "pytelegrambotapi",
           0.00061
         ],
         [
+          "ptb",
+          0.00063
+        ],
+        [
+          "requests",
+          0.00068
+        ],
+        [
+          "uplink",
+          0.00069
+        ],
+        [
           "urllib3",
-          0.00067
+          0.00071
         ],
         [
           "httpx",
-          0.00119
+          0.00131
         ]
       ],
       "avg_http_send_time_s": [
         [
-          "ptb",
-          0.48942
+          "pytelegrambotapi",
+          0.69824
         ],
         [
           "httpx",
-          0.71974
-        ],
-        [
-          "pytelegrambotapi",
-          0.73065
-        ],
-        [
-          "aiohttp",
-          0.79705
+          0.70732
         ],
         [
           "urllib3",
-          2.36428
+          0.72201
+        ],
+        [
+          "uplink",
+          0.72573
+        ],
+        [
+          "aiohttp",
+          0.72971
+        ],
+        [
+          "ptb",
+          2.04631
+        ],
+        [
+          "requests",
+          2.56632
         ]
       ],
       "success_rate": [
@@ -509,7 +549,15 @@
           100.0
         ],
         [
+          "requests",
+          100.0
+        ],
+        [
           "urllib3",
+          100.0
+        ],
+        [
+          "uplink",
           100.0
         ],
         [
@@ -527,12 +575,20 @@
           273.0
         ],
         [
+          "uplink",
+          274.0
+        ],
+        [
           "aiohttp",
           275.0
         ],
         [
           "urllib3",
           275.0
+        ],
+        [
+          "requests",
+          276.0
         ],
         [
           "pytelegrambotapi",
@@ -545,62 +601,62 @@
       ],
       "memory_increase_mb": [
         [
-          "requests",
-          0.01
-        ],
-        [
           "uplink",
-          0.03
+          0.04
         ],
         [
-          "pytelegrambotapi",
-          0.28
+          "requests",
+          0.17
         ],
         [
           "urllib3",
-          0.32
+          0.17
+        ],
+        [
+          "pytelegrambotapi",
+          0.3
         ],
         [
           "aiohttp",
-          1.21
+          1.22
         ],
         [
           "ptb",
-          1.4
+          1.28
         ],
         [
           "httpx",
-          3.0
+          3.04
         ]
       ],
       "cpu_time_percent": [
         [
-          "requests",
+          "uplink",
           0.0
         ],
         [
+          "requests",
+          0.89
+        ],
+        [
           "urllib3",
-          0.66
-        ],
-        [
-          "pytelegrambotapi",
-          1.07
-        ],
-        [
-          "uplink",
-          1.53
+          0.99
         ],
         [
           "aiohttp",
-          1.96
+          1.07
         ],
         [
-          "httpx",
-          11.37
+          "pytelegrambotapi",
+          1.12
         ],
         [
           "ptb",
-          16.63
+          6.62
+        ],
+        [
+          "httpx",
+          11.51
         ]
       ]
     }

@@ -1,111 +1,130 @@
 import uplink
-from uplink import Body, Field, post, Consumer, headers
+from uplink import Consumer, get, post, Field, form_url_encoded
 import aiohttp
 import typing
+import json
 from .base_sender import BaseSender
 
 # Define the Telegram API consumer using Uplink
-@headers({"Accept": "application/json", "Content-Type": "application/json"})
-class TelegramUplinkService(Consumer):
+class TelegramAPI(Consumer):
+    """A simple Telegram Bot API client."""
+    
+    # Use form_url_encoded for Telegram API which works well with standard form data
+    @form_url_encoded
     @post("sendMessage")
-    async def send_telegram_message(self, payload: Body) -> typing.Any:
-        """
-        Sends a message via Telegram. The payload argument forms the JSON body.
-        """
+    def send_message(self, 
+                    chat_id: Field, 
+                    text: Field) -> aiohttp.ClientResponse:
+        """Send a message to a chat."""
         pass
 
 class UplinkSender(BaseSender):
     name = "uplink"
-    _service: TelegramUplinkService = None
-    _aiohttp_session: aiohttp.ClientSession = None
-
+    
     async def initialize_session(self):
+        """Initialize the aiohttp session and Uplink service."""
         self._aiohttp_session = aiohttp.ClientSession(
             connector=aiohttp.TCPConnector(limit=self.config.MAX_CONCURRENT_REQUESTS_PER_LIBRARY)
         )
-        if not self.config.TELEGRAM_BOT_TOKEN:
-            raise ValueError("TELEGRAM_BOT_TOKEN not found in config.")
-        base_api_url = f"https://api.telegram.org/bot{self.config.TELEGRAM_BOT_TOKEN}/"
-        self._service = uplink.builder.build(
-            TelegramUplinkService, 
-            base_url=base_api_url, 
-            client=self._aiohttp_session
-        )
-        return self._aiohttp_session
-
-    async def close_session(self, session: aiohttp.ClientSession):
-        if session:
-            await session.close()
-        self._service = None
-        self._aiohttp_session = None
-
-    async def send_message_async(self, 
-                                 session: aiohttp.ClientSession,
-                                 db_conn, 
-                                 text_payload: str, 
-                                 message_params: dict):
-        if not self._service:
-            if session != self._aiohttp_session:
-                 print(f"[Warning {self.name}] Session mismatch detected!")
-            raise RuntimeError("Uplink service not initialized. Call initialize_session first.")
         
-        call_kwargs = {
-            "chat_id": self.chat_id,
-            "text": text_payload
-        }
-        if message_params:
-            call_kwargs.update(message_params)
-
+        # Build the Telegram API client with the base URL including the token
+        base_url = f"https://api.telegram.org/bot{self.token}/"
+        self._api = uplink.build(TelegramAPI, base_url=base_url, client=self._aiohttp_session)
+        
+        return self._aiohttp_session
+    
+    async def close_session(self, session):
+        """Close the aiohttp session."""
+        if session and not session.closed:
+            await session.close()
+        self._api = None
+        self._aiohttp_session = None
+    
+    async def send_message_async(self, 
+                               session,
+                               db_conn, 
+                               text_payload, 
+                               message_params):
+        """Send a message using the Uplink client."""
+        if not self._api:
+            raise RuntimeError("API client not initialized")
+        
+        # Capture important debug information
+        print(f"[Debug UplinkSender] Sending to chat_id={self.chat_id}, text={text_payload[:30]}...")
+        
         try:
-            uplink_response: aiohttp.ClientResponse = await self._service.send_telegram_message(payload=call_kwargs)
+            # Use a simple form call which matches Telegram's expectations
+            response = await self._api.send_message(
+                chat_id=self.chat_id,
+                text=text_payload
+            )
             
-            status_code = uplink_response.status
-            response_body_bytes = await uplink_response.read()
-            response_text = response_body_bytes.decode('utf-8', errors='replace')
-            response_size = len(response_body_bytes)
+            # Process the response 
+            status_code = response.status
+            content_bytes = await response.read()
+            response_text = content_bytes.decode('utf-8', errors='replace')
+            response_size = len(content_bytes)
             success = 200 <= status_code < 300
+            
             if not success:
-                 print(f"[Debug {self.name}] Non-2xx Success Status: {status_code}, Response: {response_text[:200]}")
+                print(f"[Debug {self.name}] Non-2xx Status: {status_code}, Response: {response_text[:200]}")
+            
             return status_code, response_text, response_size, success
+            
         except aiohttp.ClientResponseError as e:
-            status = e.status
-            error_text = e.message + (f" | Response: {e.response_text[:100]}" if hasattr(e, 'response_text') else "")
-            print(f"{self.name} sender aiohttp.ClientResponseError: {status} - {e.message}")
-            print(f"[Debug {self.name}] aiohttp.ClientResponseError Status: {status}, Message: {e.message}, Headers: {e.headers}")
-            return status, error_text, 0, False
-        except aiohttp.ClientConnectionError as e:
-            status = 0
-            error_text = str(e)
-            print(f"{self.name} sender aiohttp.ClientConnectionError: {error_text}")
-            return status, error_text, 0, False
+            print(f"[Debug {self.name}] ClientResponseError: Status={e.status}, Message={e.message}")
+            return e.status, str(e), 0, False
+            
         except aiohttp.ClientError as e:
-            status = e.status if hasattr(e, 'status') else 0
-            error_text = str(e)
-            print(f"{self.name} sender aiohttp.ClientError: {error_text}")
-            print(f"[Debug {self.name}] aiohttp.ClientError Status: {status}, Error: {error_text}")
-            return status, error_text, 0, False
+            print(f"[Debug {self.name}] ClientError: {str(e)}")
+            return 0, str(e), 0, False
+            
         except Exception as e:
-            status = 500
-            if hasattr(e, 'response') and hasattr(e.response, 'status_code'):
-                status = e.response.status_code
-            elif hasattr(e, 'status_code'):
-                status = e.status_code
-            error_text = str(e)
-            print(f"{self.name} sender general error: {e}")
-            print(f"[Debug {self.name}] General Error Status: {status}, Type: {type(e).__name__}, Error: {error_text}")
-            if hasattr(e, 'response') and hasattr(e.response, 'text'):
-                 print(f"[Debug {self.name}] General Error Response Hint: {e.response.text[:200]}")
-            return status, error_text, 0, False
+            print(f"[Debug {self.name}] Unexpected error: {type(e).__name__} - {str(e)}")
+            return 0, str(e), 0, False
 
     def send_message_sync(self, db_conn, text_payload, message_params):
-        raise NotImplementedError(f"{self.name} is implemented as asynchronous only.")
+        """Send a message using Uplink in synchronous mode.
+        This implementation doesn't use the Uplink client directly as it's designed for async,
+        but falls back to a simple requests implementation for sync operations."""
+        import requests
+        
+        # Format the URL directly
+        url = f"https://api.telegram.org/bot{self.token}/sendMessage"
+        
+        # Prepare the form data
+        data = {
+            'chat_id': self.chat_id,
+            'text': text_payload
+        }
+        
+        # Add any additional parameters
+        if message_params:
+            data.update(message_params)
+        
+        try:
+            # Use requests directly for sync operations
+            response = requests.post(url, data=data, timeout=10)
+            status_code = response.status_code
+            response_text = response.text
+            response_size = len(response.content)
+            success = 200 <= status_code < 300
+            
+            if not success:
+                print(f"[Debug {self.name} sync] Error: {status_code}, Response: {response_text[:200]}")
+                
+            return status_code, response_text, response_size, success
+            
+        except requests.RequestException as e:
+            print(f"[Debug {self.name} sync] RequestException: {str(e)}")
+            return 0, str(e), 0, False
+            
+        except Exception as e:
+            print(f"[Debug {self.name} sync] Unexpected error: {type(e).__name__} - {str(e)}")
+            return 0, str(e), 0, False
 
     def get_sender_type(self):
-        return "async"
+        return "async"  # Primary mode is async
 
     def get_library_version(self):
-        try:
-            import uplink as u_pkg
-            return u_pkg.__version__
-        except ImportError:
-            return "uplink (version not found)" 
+        return uplink.__version__ 

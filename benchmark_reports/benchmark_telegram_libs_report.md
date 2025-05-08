@@ -1,6 +1,6 @@
 # Telegram HTTP Library Benchmark
 ## Overview
-- **Date:** 2025-05-08 16:48:38
+- **Date:** 2025-05-08 17:00:21
 - **Number of Messages per Library:** 2
 - **Libraries Tested:** httpx, aiohttp, requests, urllib3, uplink, ptb, pytelegrambotapi
 - **Python Version:** 3.13.2
@@ -9,12 +9,12 @@
 ---
 
 ## Summary of Best Performers
-- **Fastest Avg. Total Processing Time (DB+HTTP):** ptb (0.4900s)
-- **Highest Throughput:** pytelegrambotapi (1.37 msg/s)
-- **Most Consistent (Lowest Std Dev - Total Time):** ptb (0.0231s)
+- **Fastest Avg. Total Processing Time (DB+HTTP):** pytelegrambotapi (0.6989s)
+- **Highest Throughput:** pytelegrambotapi (1.43 msg/s)
+- **Most Consistent (Lowest Std Dev - Total Time):** uplink (0.2414s)
 - **Highest Success Rate:** httpx (100.00%)
-- **Lowest Memory Usage:** requests (0.01 MB)
-- **Lowest CPU Usage:** requests (0.00%)
+- **Lowest Memory Usage:** uplink (0.04 MB)
+- **Lowest CPU Usage:** uplink (0.00%)
 
 ---
 
