@@ -1,7 +1,7 @@
 {
   "benchmark_details": {
     "project_name": "Telegram HTTP Library Benchmark",
-    "timestamp": "2025-05-08T14:28:06.876243+00:00",
+    "timestamp": "2025-05-08T14:34:20.798774+00:00",
     "python_version": "3.13.2",
     "platform": "Windows-11-10.0.26100-SP0",
     "libraries_versions": {
@@ -11,10 +11,10 @@
       "urllib3": "2.2.2"
     },
     "parameters": {
-      "num_messages_per_library": 2,
+      "num_messages_per_library": 5,
       "telegram_api_url": "https://api.telegram.org/bot[REDACTED]/sendMessage"
     },
-    "report_generated_at": "2025-05-08T14:28:06.898660+00:00"
+    "report_generated_at": "2025-05-08T14:34:20.824393+00:00"
   },
   "libraries": {
     "httpx": {
@@ -24,30 +24,51 @@
       "run_details": [
         {
           "status_code": 200,
-          "response_text": "{\"ok\":true,\"result\":{\"message_id\":320,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
-          "response_time_ms": 1162.31,
+          "response_text": "{\"ok\":true,\"result\":{\"message_id\":336,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_time_ms": 1152.89,
           "success": true,
           "error_message": null
         },
         {
           "status_code": 200,
-          "response_text": "{\"ok\":true,\"result\":{\"message_id\":321,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
-          "response_time_ms": 1247.18,
+          "response_text": "{\"ok\":true,\"result\":{\"message_id\":337,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_time_ms": 1242.81,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text": "{\"ok\":true,\"result\":{\"message_id\":338,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_time_ms": 1138.3,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text": "{\"ok\":true,\"result\":{\"message_id\":339,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_time_ms": 1148.37,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text": "{\"ok\":true,\"result\":{\"message_id\":340,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_time_ms": 1135.02,
           "success": true,
           "error_message": null
         }
       ],
       "workflow": {
-        "avg_telegram_send_time_s": 1.2047,
-        "min_telegram_send_time_s": 1.1623,
-        "max_telegram_send_time_s": 1.2472,
-        "total_workflow_time_all_runs_s": 2.4095,
-        "successful_runs": 2,
+        "avg_telegram_send_time_s": 1.1635,
+        "min_telegram_send_time_s": 1.135,
+        "max_telegram_send_time_s": 1.2428,
+        "total_workflow_time_all_runs_s": 5.8174,
+        "successful_runs": 5,
         "failed_runs": 0,
-        "total_runs": 2,
+        "total_runs": 5,
         "success_rate_percent": 100.0,
-        "cpu_time_percent": 13.73,
-        "memory_increase_mb": 4.2
+        "cpu_time_percent": 14.28,
+        "memory_increase_mb": 7.16
       }
     },
     "aiohttp": {
@@ -57,30 +78,51 @@
       "run_details": [
         {
           "status_code": 200,
-          "response_text": "{\"ok\":true,\"result\":{\"message_id\":322,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
-          "response_time_ms": 963.68,
+          "response_text": "{\"ok\":true,\"result\":{\"message_id\":341,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_time_ms": 958.5,
           "success": true,
           "error_message": null
         },
         {
           "status_code": 200,
-          "response_text": "{\"ok\":true,\"result\":{\"message_id\":323,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
-          "response_time_ms": 964.06,
+          "response_text": "{\"ok\":true,\"result\":{\"message_id\":342,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_time_ms": 963.24,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text": "{\"ok\":true,\"result\":{\"message_id\":343,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_time_ms": 951.07,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text": "{\"ok\":true,\"result\":{\"message_id\":344,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_time_ms": 969.91,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text": "{\"ok\":true,\"result\":{\"message_id\":345,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_time_ms": 960.91,
           "success": true,
           "error_message": null
         }
       ],
       "workflow": {
-        "avg_telegram_send_time_s": 0.9639,
-        "min_telegram_send_time_s": 0.9637,
-        "max_telegram_send_time_s": 0.9641,
-        "total_workflow_time_all_runs_s": 1.9277,
-        "successful_runs": 2,
+        "avg_telegram_send_time_s": 0.9607,
+        "min_telegram_send_time_s": 0.9511,
+        "max_telegram_send_time_s": 0.9699,
+        "total_workflow_time_all_runs_s": 4.8036,
+        "successful_runs": 5,
         "failed_runs": 0,
-        "total_runs": 2,
+        "total_runs": 5,
         "success_rate_percent": 100.0,
-        "cpu_time_percent": 0.0,
-        "memory_increase_mb": 1.37
+        "cpu_time_percent": 0.29,
+        "memory_increase_mb": 1.23
       }
     },
     "requests": {
@@ -90,30 +132,51 @@
       "run_details": [
         {
           "status_code": 200,
-          "response_text": "{\"ok\":true,\"result\":{\"message_id\":324,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
-          "response_time_ms": 1004.3,
+          "response_text": "{\"ok\":true,\"result\":{\"message_id\":346,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_time_ms": 1037.9,
           "success": true,
           "error_message": null
         },
         {
           "status_code": 200,
-          "response_text": "{\"ok\":true,\"result\":{\"message_id\":325,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
-          "response_time_ms": 959.23,
+          "response_text": "{\"ok\":true,\"result\":{\"message_id\":347,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_time_ms": 1014.74,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text": "{\"ok\":true,\"result\":{\"message_id\":348,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_time_ms": 982.63,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text": "{\"ok\":true,\"result\":{\"message_id\":349,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_time_ms": 968.71,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text": "{\"ok\":true,\"result\":{\"message_id\":350,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_time_ms": 998.08,
           "success": true,
           "error_message": null
         }
       ],
       "workflow": {
-        "avg_telegram_send_time_s": 0.9818,
-        "min_telegram_send_time_s": 0.9592,
-        "max_telegram_send_time_s": 1.0043,
-        "total_workflow_time_all_runs_s": 1.9635,
-        "successful_runs": 2,
+        "avg_telegram_send_time_s": 1.0004,
+        "min_telegram_send_time_s": 0.9687,
+        "max_telegram_send_time_s": 1.0379,
+        "total_workflow_time_all_runs_s": 5.0021,
+        "successful_runs": 5,
         "failed_runs": 0,
-        "total_runs": 2,
+        "total_runs": 5,
         "success_rate_percent": 100.0,
         "cpu_time_percent": 0.0,
-        "memory_increase_mb": 0.13
+        "memory_increase_mb": 0.08
       }
     },
     "urllib3": {
@@ -123,61 +186,82 @@
       "run_details": [
         {
           "status_code": 200,
-          "response_text": "{\"ok\":true,\"result\":{\"message_id\":326,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
-          "response_time_ms": 977.73,
+          "response_text": "{\"ok\":true,\"result\":{\"message_id\":351,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_time_ms": 997.5,
           "success": true,
           "error_message": null
         },
         {
           "status_code": 200,
-          "response_text": "{\"ok\":true,\"result\":{\"message_id\":327,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
-          "response_time_ms": 448.15,
+          "response_text": "{\"ok\":true,\"result\":{\"message_id\":352,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_time_ms": 436.59,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text": "{\"ok\":true,\"result\":{\"message_id\":353,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_time_ms": 440.48,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text": "{\"ok\":true,\"result\":{\"message_id\":354,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_time_ms": 458.65,
+          "success": true,
+          "error_message": null
+        },
+        {
+          "status_code": 200,
+          "response_text": "{\"ok\":true,\"result\":{\"message_id\":355,\"from\":{\"id\":7944633759,\"is_bot\":true,\"first_name\":\"Rock-Paper",
+          "response_time_ms": 3611.74,
           "success": true,
           "error_message": null
         }
       ],
       "workflow": {
-        "avg_telegram_send_time_s": 0.7129,
-        "min_telegram_send_time_s": 0.4481,
-        "max_telegram_send_time_s": 0.9777,
-        "total_workflow_time_all_runs_s": 1.4259,
-        "successful_runs": 2,
+        "avg_telegram_send_time_s": 1.189,
+        "min_telegram_send_time_s": 0.4366,
+        "max_telegram_send_time_s": 3.6117,
+        "total_workflow_time_all_runs_s": 5.945,
+        "successful_runs": 5,
         "failed_runs": 0,
-        "total_runs": 2,
+        "total_runs": 5,
         "success_rate_percent": 100.0,
-        "cpu_time_percent": 0.96,
-        "memory_increase_mb": 0.27
+        "cpu_time_percent": 0.48,
+        "memory_increase_mb": 0.33
       }
     }
   },
   "overall_summary": {
-    "fastest_avg_telegram_send_time": "urllib3",
-    "fastest_avg_telegram_send_time_s": 0.7129,
-    "slowest_avg_telegram_send_time": "httpx",
-    "slowest_avg_telegram_send_time_s": 1.2047,
+    "fastest_avg_telegram_send_time": "aiohttp",
+    "fastest_avg_telegram_send_time_s": 0.9607,
+    "slowest_avg_telegram_send_time": "urllib3",
+    "slowest_avg_telegram_send_time_s": 1.189,
     "highest_success_rate_library": "httpx",
     "highest_success_rate_percent": 100.0,
     "lowest_memory_library": "requests",
-    "lowest_memory_increase_mb": 0.13,
-    "lowest_cpu_library": "aiohttp",
+    "lowest_memory_increase_mb": 0.08,
+    "lowest_cpu_library": "requests",
     "lowest_cpu_time_percent": 0.0,
     "rankings": {
       "avg_telegram_send_time": [
         [
-          "urllib3",
-          0.7129
-        ],
-        [
           "aiohttp",
-          0.9639
+          0.9607
         ],
         [
           "requests",
-          0.9818
+          1.0004
         ],
         [
           "httpx",
-          1.2047
+          1.1635
+        ],
+        [
+          "urllib3",
+          1.189
         ]
       ],
       "success_rate": [
@@ -201,37 +285,37 @@
       "memory_usage": [
         [
           "requests",
-          0.13
+          0.08
         ],
         [
           "urllib3",
-          0.27
+          0.33
         ],
         [
           "aiohttp",
-          1.37
+          1.23
         ],
         [
           "httpx",
-          4.2
+          7.16
         ]
       ],
       "cpu_usage": [
-        [
-          "aiohttp",
-          0.0
-        ],
         [
           "requests",
           0.0
         ],
         [
+          "aiohttp",
+          0.29
+        ],
+        [
           "urllib3",
-          0.96
+          0.48
         ],
         [
           "httpx",
-          13.73
+          14.28
         ]
       ]
     }

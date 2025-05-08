@@ -1,7 +1,7 @@
 # Telegram HTTP Library Benchmark
 ## Overview
-- **Date:** 2025-05-08 14:28:06
-- **Number of Messages per Library:** 2
+- **Date:** 2025-05-08 14:34:20
+- **Number of Messages per Library:** 5
 - **Libraries Tested:** httpx, aiohttp, requests, urllib3
 - **Python Version:** 3.13.2
 - **Platform:** Windows-11-10.0.26100-SP0
@@ -9,38 +9,38 @@
 ---
 
 ## Summary of Best Performers
-- **Fastest Avg. Telegram Send Time:** urllib3 (0.7129s)
+- **Fastest Avg. Telegram Send Time:** aiohttp (0.9607s)
 - **Highest Success Rate:** httpx (100.00%)
-- **Lowest Memory Usage (Workflow):** requests (0.13 MB)
-- **Lowest CPU Usage (Workflow):** aiohttp (0.00%)
+- **Lowest Memory Usage (Workflow):** requests (0.08 MB)
+- **Lowest CPU Usage (Workflow):** requests (0.00%)
 
 ---
 
 ## Detailed Results per Library
-| Library | Version | Avg TG Send (s) | Min TG Send (s) | Max TG Send (s) | Total Runs | Success Runs | Failed Runs | Success Rate (%) | CPU (%) | Memory (MB) |
-|---------|---------|-----------------|-----------------|-----------------|------------|--------------|-------------|------------------|---------|-------------|
-| httpx | 0.27.0 | 1.2047 | 1.1623 | 1.2472 | 2 | 2 | 0 | 100.00 | 13.73 | 4.20 |
-| aiohttp | 3.9.5 | 0.9639 | 0.9637 | 0.9641 | 2 | 2 | 0 | 100.00 | 0.00 | 1.37 |
-| requests | 2.32.3 | 0.9818 | 0.9592 | 1.0043 | 2 | 2 | 0 | 100.00 | 0.00 | 0.13 |
-| urllib3 | 2.2.2 | 0.7129 | 0.4481 | 0.9777 | 2 | 2 | 0 | 100.00 | 0.96 | 0.27 |
+| Library | Version | Avg TG Send (s) (Lower is Better) | Min TG Send (s) (Lower is Better) | Max TG Send (s) (Lower is Better) | Total Runs | Success Runs (Higher is Better) | Failed Runs (Lower is Better) | Success Rate (%) (Higher is Better) | CPU (%) (Lower is Better) | Memory (MB) (Lower is Better) |
+|---------|---------|-----------------------------------|-----------------------------------|-----------------------------------|------------|-------------------------------|-----------------------------|-----------------------------------|---------------------------|-----------------------------|
+| httpx | 0.27.0 | 1.1635 | 1.1350 | 1.2428 | 5 | 5 | 0 | 100.00 | 14.28 | 7.16 |
+| aiohttp | 3.9.5 | 0.9607 | 0.9511 | 0.9699 | 5 | 5 | 0 | 100.00 | 0.29 | 1.23 |
+| requests | 2.32.3 | 1.0004 | 0.9687 | 1.0379 | 5 | 5 | 0 | 100.00 | 0.00 | 0.08 |
+| urllib3 | 2.2.2 | 1.1890 | 0.4366 | 3.6117 | 5 | 5 | 0 | 100.00 | 0.48 | 0.33 |
 
 ---
 
 ## Performance Rankings & Visualizations
 
-### Fastest Average Telegram Send Time
+### Fastest Average Telegram Send Time (Lower is Better)
 
 ![Avg TG Send Time Plot](plot_avg_telegram_send_time.png)
 
 | Rank | Library | Avg Time (s) |
 |------|---------|--------------|
-| 1 | urllib3 | 0.7129 |
-| 2 | aiohttp | 0.9639 |
-| 3 | requests | 0.9818 |
-| 4 | httpx | 1.2047 |
+| 1 | aiohttp | 0.9607 |
+| 2 | requests | 1.0004 |
+| 3 | httpx | 1.1635 |
+| 4 | urllib3 | 1.1890 |
 
 
-### Highest Success Rate
+### Highest Success Rate (Higher is Better)
 
 ![Success/Failure Rate Plot](plot_success_failure_rate.png)
 
@@ -52,30 +52,30 @@
 | 4 | urllib3 | 100.00 |
 
 
-## Resource Usage Rankings (Lower is Better - Placeholders)
+## Resource Usage Rankings (Lower is Better)
 
-### Lowest Memory Usage (Workflow)
+### Lowest Memory Usage (Workflow) (Lower is Better)
 
 ![Memory Usage Plot](plot_memory_increase.png)
 
 | Rank | Library | Memory Increase (MB) |
 |------|---------|----------------------|
-| 1 | requests | 0.13 |
-| 2 | urllib3 | 0.27 |
-| 3 | aiohttp | 1.37 |
-| 4 | httpx | 4.20 |
+| 1 | requests | 0.08 |
+| 2 | urllib3 | 0.33 |
+| 3 | aiohttp | 1.23 |
+| 4 | httpx | 7.16 |
 
 
-### Lowest CPU Usage (Workflow)
+### Lowest CPU Usage (Workflow) (Lower is Better)
 
 ![CPU Usage Plot](plot_cpu_usage.png)
 
 | Rank | Library | CPU Usage (%) |
 |------|---------|---------------|
-| 1 | aiohttp | 0.00 |
-| 2 | requests | 0.00 |
-| 3 | urllib3 | 0.96 |
-| 4 | httpx | 13.73 |
+| 1 | requests | 0.00 |
+| 2 | aiohttp | 0.29 |
+| 3 | urllib3 | 0.48 |
+| 4 | httpx | 14.28 |
 
 
 ---

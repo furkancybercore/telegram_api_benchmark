@@ -14,7 +14,7 @@ if TELEGRAM_BOT_TOKEN == 'YOUR_TELEGRAM_BOT_TOKEN' or TELEGRAM_CHAT_ID == 'YOUR_
 TELEGRAM_API_URL_TEMPLATE = "https://api.telegram.org/bot{token}/sendMessage"
 
 # --- Benchmark Parameters ---
-NUM_MESSAGES = 2  # Number of messages to send for each library
+NUM_MESSAGES = 5  # Number of messages to send for each library
 TEST_MESSAGE_PAYLOAD = "Hello from the Telegram Benchmark Script!"
 
 # --- Report Configuration ---

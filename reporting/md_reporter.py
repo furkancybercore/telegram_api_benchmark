@@ -45,8 +45,8 @@ def generate_report(report_data, output_dir, filename):
 
     # --- Detailed Results per Library ---
     md_content.append("## Detailed Results per Library")
-    md_content.append("| Library | Version | Avg TG Send (s) | Min TG Send (s) | Max TG Send (s) | Total Runs | Success Runs | Failed Runs | Success Rate (%) | CPU (%) | Memory (MB) |")
-    md_content.append("|---------|---------|-----------------|-----------------|-----------------|------------|--------------|-------------|------------------|---------|-------------|")
+    md_content.append("| Library | Version | Avg TG Send (s) (Lower is Better) | Min TG Send (s) (Lower is Better) | Max TG Send (s) (Lower is Better) | Total Runs | Success Runs (Higher is Better) | Failed Runs (Lower is Better) | Success Rate (%) (Higher is Better) | CPU (%) (Lower is Better) | Memory (MB) (Lower is Better) |")
+    md_content.append("|---------|---------|-----------------------------------|-----------------------------------|-----------------------------------|------------|-------------------------------|-----------------------------|-----------------------------------|---------------------------|-----------------------------|")
     for lib_name, lib_data in libraries.items():
         workflow_metrics = lib_data.get("workflow", {})
         version = lib_data.get("version", "N/A")
@@ -69,7 +69,7 @@ def generate_report(report_data, output_dir, filename):
     rankings = summary_overall.get("rankings", {})
 
     if rankings.get("avg_telegram_send_time"):
-        md_content.append("\n### Fastest Average Telegram Send Time")
+        md_content.append("\n### Fastest Average Telegram Send Time (Lower is Better)")
         if plot_filenames.get('avg_telegram_send_time'):
              md_content.append(f"\n![Avg TG Send Time Plot]({plot_filenames['avg_telegram_send_time']})\n")
         md_content.append("| Rank | Library | Avg Time (s) |")
@@ -79,7 +79,7 @@ def generate_report(report_data, output_dir, filename):
         md_content.append("")
             
     if rankings.get("success_rate"):
-        md_content.append("\n### Highest Success Rate")
+        md_content.append("\n### Highest Success Rate (Higher is Better)")
         if plot_filenames.get('success_failure_rate'):
              md_content.append(f"\n![Success/Failure Rate Plot]({plot_filenames['success_failure_rate']})\n")
         md_content.append("| Rank | Library | Success Rate (%) |")
@@ -89,9 +89,9 @@ def generate_report(report_data, output_dir, filename):
         md_content.append("")
 
     # --- Resource Usage Rankings (Placeholders for now) ---
-    md_content.append("\n## Resource Usage Rankings (Lower is Better - Placeholders)")
+    md_content.append("\n## Resource Usage Rankings (Lower is Better)")
     if rankings.get("memory_usage") or plot_filenames.get('memory_increase'): # Show section if plot exists or data structure exists
-        md_content.append("\n### Lowest Memory Usage (Workflow)")
+        md_content.append("\n### Lowest Memory Usage (Workflow) (Lower is Better)")
         if plot_filenames.get('memory_increase'):
              md_content.append(f"\n![Memory Usage Plot]({plot_filenames['memory_increase']})\n")
         if rankings.get("memory_usage"):
@@ -102,7 +102,7 @@ def generate_report(report_data, output_dir, filename):
         md_content.append("")
 
     if rankings.get("cpu_usage") or plot_filenames.get('cpu_usage'):
-        md_content.append("\n### Lowest CPU Usage (Workflow)")
+        md_content.append("\n### Lowest CPU Usage (Workflow) (Lower is Better)")
         if plot_filenames.get('cpu_usage'):
              md_content.append(f"\n![CPU Usage Plot]({plot_filenames['cpu_usage']})\n")
         if rankings.get("cpu_usage"):
