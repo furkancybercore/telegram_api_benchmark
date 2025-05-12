@@ -14,7 +14,7 @@ if TELEGRAM_BOT_TOKEN == 'YOUR_TELEGRAM_BOT_TOKEN':
 TELEGRAM_API_URL_TEMPLATE = "https://api.telegram.org/bot{token}/sendMessage"
 
 # --- Benchmark Parameters ---
-NUM_MESSAGES = int(os.getenv('NUM_MESSAGES', 10))  # Number of messages to send for each library
+NUM_MESSAGES = int(os.getenv('NUM_MESSAGES', 100))  # Number of messages to send for each library
 MAX_CONCURRENT_REQUESTS_PER_LIBRARY = int(os.getenv('MAX_CONCURRENT_REQUESTS_PER_LIBRARY', 50))
 
 # List of library names (keys from SENDER_CLASSES in main.py) to test.
