@@ -5,8 +5,8 @@ load_dotenv() # Load variables from .env file
 
 # --- Telegram API Configuration ---
 # Fallback to placeholders if not set in environment variables
-TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN', 'YOUR_TELEGRAM_BOT_TOKEN')
-TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID', '8123173403')  # Updated to the new chat ID
+TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
+TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')  # Updated to the new chat ID
 
 if TELEGRAM_BOT_TOKEN == 'YOUR_TELEGRAM_BOT_TOKEN':
     print("WARNING: Telegram Bot Token is not set. Please create a .env file with TELEGRAM_BOT_TOKEN or update config.py.")
@@ -14,8 +14,8 @@ if TELEGRAM_BOT_TOKEN == 'YOUR_TELEGRAM_BOT_TOKEN':
 TELEGRAM_API_URL_TEMPLATE = "https://api.telegram.org/bot{token}/sendMessage"
 
 # --- Benchmark Parameters ---
-NUM_MESSAGES = int(os.getenv('NUM_MESSAGES', 100))  # Number of messages to send for each library
-MAX_CONCURRENT_REQUESTS_PER_LIBRARY = int(os.getenv('MAX_CONCURRENT_REQUESTS_PER_LIBRARY', 50))
+NUM_MESSAGES = int(os.getenv('NUM_MESSAGES'))  # Number of messages to send for each library
+MAX_CONCURRENT_REQUESTS_PER_LIBRARY = int(os.getenv('MAX_CONCURRENT_REQUESTS_PER_LIBRARY'))
 
 # List of library names (keys from SENDER_CLASSES in main.py) to test.
 # If empty or None, all available libraries will be tested.

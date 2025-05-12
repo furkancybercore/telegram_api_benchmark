@@ -1,7 +1,7 @@
 # Telegram HTTP Library Benchmark
 ## Overview
-- **Date:** 2025-05-09 11:32:08 (Sydney UTC+10)
-- **Number of Messages per Library:** 100
+- **Date:** 2025-05-12 10:51:11 (Sydney UTC+10)
+- **Number of Messages per Library:** 5
 - **Libraries Tested:** httpx, aiohttp, requests, urllib3, uplink, ptb, pytelegrambotapi
 - **Python Version:** 3.13.2
 - **Platform:** Windows-11-10.0.26100-SP0
@@ -26,16 +26,16 @@ This benchmark test was conducted using the following steps:
 ## Summary of Best Performers
 **Performance Metrics:**
 - **Success Rate:** 100.00% (httpx, aiohttp, requests, urllib3, uplink, python-telegram-bot, pytelegrambotapi)
-- **Total Processing Time:** 0.4520s (aiohttp)
-- **Throughput:** 2.21 msg/s (aiohttp)
+- **Total Processing Time:** 0.4447s (python-telegram-bot)
+- **Throughput:** 1.86 msg/s (pytelegrambotapi)
 - **HTTP Send Time:** 0.0000s (N/A)
 - **DB Read Time:** 0.00000s (N/A)
-- **Consistency (Lowest Std Dev):** 0.0370s (requests)
+- **Consistency (Lowest Std Dev):** 0.0018s (python-telegram-bot)
 - **Response Size:** 0.0 bytes (N/A)
  
 **Resource Usage Metrics:**
-- **CPU Usage:** 0.14% (aiohttp)
-- **Memory Usage:** 0.04 MB (requests)
+- **CPU Usage:** 0.00% (aiohttp, uplink, pytelegrambotapi)
+- **Memory Usage:** 0.02 MB (uplink)
 
 ---
 
@@ -44,13 +44,13 @@ The table below compares all libraries across the key metrics:
 
 | Library | Success Rate (%) | Throughput (msg/s) | Avg Total Time (s) | Std Dev Total (s) | CPU Usage (%) | Memory (MB) | Avg HTTP Time (s) | Avg DB Read (s) | Avg Response Size (B) |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| httpx | 100.00 | 2.17 | 0.4594 | 0.0623 | 0.78 | 3.30 | 0.4591 | 0.00031 | 254.9 |
-| aiohttp | 100.00 | 2.21 | 0.4520 | 0.0590 | 0.14 | 1.08 | 0.4517 | 0.00032 | 256.9 |
-| requests | 100.00 | 1.03 | 0.9698 | 0.0370 | 0.21 | 0.04 | 0.9694 | 0.00034 | 257.9 |
-| urllib3 | 100.00 | 2.20 | 0.4546 | 0.0597 | 0.24 | 0.05 | 0.4542 | 0.00035 | 256.9 |
-| uplink | 100.00 | 2.21 | 0.4523 | 0.0553 | 0.28 | 0.29 | 0.4519 | 0.00032 | 255.9 |
-| python-telegram-bot | 100.00 | 2.13 | 0.4587 | 0.0653 | 1.23 | 0.73 | 0.4584 | 0.00028 | 374.9 |
-| pytelegrambotapi | 100.00 | 2.20 | 0.4544 | 0.0536 | 0.41 | 0.44 | 0.4541 | 0.00030 | 265.9 |
+| httpx | 100.00 | 1.65 | 0.5627 | 0.2185 | 7.21 | 2.75 | 0.5615 | 0.00112 | 254.0 |
+| aiohttp | 100.00 | 1.80 | 0.5551 | 0.2013 | 0.00 | 1.41 | 0.5548 | 0.00026 | 256.0 |
+| requests | 100.00 | 1.00 | 0.9699 | 0.0157 | 0.63 | 0.16 | 0.9694 | 0.00050 | 257.0 |
+| urllib3 | 100.00 | 1.76 | 0.5613 | 0.2491 | 0.55 | 0.30 | 0.5608 | 0.00045 | 256.0 |
+| uplink | 100.00 | 1.84 | 0.5433 | 0.2039 | 0.00 | 0.02 | 0.5430 | 0.00026 | 255.0 |
+| python-telegram-bot | 100.00 | 1.50 | 0.4447 | 0.0018 | 10.28 | 1.46 | 0.4444 | 0.00025 | 374.0 |
+| pytelegrambotapi | 100.00 | 1.86 | 0.5366 | 0.2080 | 0.00 | 0.16 | 0.5363 | 0.00024 | 265.0 |
 
 ---
 

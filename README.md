@@ -94,6 +94,78 @@ This will:
     - `benchmark_report.json`: Detailed JSON report.
     - `benchmark_telegram_libs_report.md`: Summary Markdown report with plots.
 
+## Sample Message Sending Code
+
+This section shows a concise example of how each library is used to send a message to the Telegram API within this benchmark. `api_url`, `data`, `text_payload`, etc., are assumed to be defined elsewhere in the respective sender classes.
+
+### `aiohttp` (asynchronous)
+```python
+# From aiohttp_sender.py
+async with session.post(api_url, data=data) as response:
+    response_body = await response.read()
+```
+
+### `httpx` (asynchronous)
+```python
+# From httpx_sender.py
+response = await session.post(api_url, data=data) # Timeout is set on client
+response.raise_for_status()
+```
+
+### `httpx` (synchronous)
+```python
+# From httpx_sender.py
+with httpx.Client() as client:
+    response = client.post(api_url, data=data, timeout=10.0)
+```
+
+### `requests` (synchronous)
+```python
+# From requests_sender.py
+response = requests.post(self.api_url, data=data, timeout=10)
+response.raise_for_status()
+```
+
+### `urllib3` (synchronous)
+```python
+# From urllib3_sender.py
+response = self.http.request(
+    "POST",
+    self.api_url,
+    fields=data,
+    timeout=urllib3.Timeout(total=10.0)
+)
+```
+
+### `python-telegram-bot` (asynchronous SDK)
+```python
+# From ptb_sender.py (self._bot is an initialized telegram.Bot instance)
+sent_message = await self._bot.send_message(chat_id=self.chat_id, text=api_payload_text)
+```
+
+### `pyTelegramBotAPI` (asynchronous SDK)
+```python
+# From pytelegrambotapi_sender.py (self._bot is an initialized telebot.async_telebot.AsyncTeleBot instance)
+sent_message_obj = await self._bot.send_message(chat_id=self.chat_id, text=api_payload_text)
+```
+
+### `uplink` (asynchronous)
+```python
+# From uplink_sender.py (self._api is an initialized Uplink consumer instance)
+response = await self._api.send_message(
+    chat_id=self.chat_id,
+    text=text_payload
+)
+```
+
+### `uplink` (synchronous)
+```python
+# From uplink_sender.py (Note: The sync version in this sender uses requests)
+import requests
+# url and data are prepared with token, chat_id, and text_payload
+response = requests.post(url, data=data, timeout=10)
+```
+
 ## Report Structure
 
 ### JSON Report (`benchmark_report.json`)
